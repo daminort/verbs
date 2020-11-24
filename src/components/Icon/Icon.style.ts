@@ -12,6 +12,21 @@ export const Span = styled.span`
   height: ${size.normal};
   filter: invert(0.5);
   
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  &.tiny {
+    width: ${size.tiny};
+    height: ${size.tiny};
+  }
+  
+  &.mini {
+    width: ${size.mini};
+    height: ${size.mini};
+  }
+  
   &.small {
     width: ${size.small};
     height: ${size.small};

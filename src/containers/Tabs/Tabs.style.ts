@@ -10,7 +10,8 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 0.5rem;
   color: ${text.main};
-  font-size: ${size.mini};
+  font-size: ${size.tiny};
+  font-weight: 500;
   
   .left {
     display: flex;
@@ -18,6 +19,7 @@ export const Wrapper = styled.div`
     
     .tab {
       padding: 0.5rem 1rem;
+      cursor: pointer;
       
       &.active {
         color: ${text.accent};

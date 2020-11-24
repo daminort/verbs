@@ -1,7 +1,8 @@
 const colors = {
   basic: '#121212',
+  info: '#40a9ff',
   success: '#16931B',
-  error: '#931616',
+  error: '#d01111',
 };
 
 export const THEME = {
@@ -20,6 +21,10 @@ export const THEME = {
     success: colors.success,
     error: colors.error,
   },
+  border: {
+    input: 'transparent',
+    focus: '#b0bad6',
+  },
   size: {
     tiny: '0.8rem',
     mini: '0.9rem',
@@ -31,7 +36,7 @@ export const THEME = {
   svg: {
     main: 'filter: invert(0.5) sepia(0)',
     accent: 'filter: invert(0.9) sepia(0)',
-    success: 'filter: invert(0.5) sepia(1) saturate(10) hue-rotate(410deg)',
-    error: 'filter: invert(0.5) sepia(1) saturate(10) hue-rotate(340deg)',
+    success: 'filter: invert(0.5) sepia(1) saturate(100) hue-rotate(140deg)',
+    error: 'filter: invert(0.5) sepia(1) saturate(100) hue-rotate(390deg)',
   }
 };

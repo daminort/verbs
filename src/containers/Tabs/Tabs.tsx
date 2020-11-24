@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
+import { DirectionSwitcher } from '../../components/DirectionSwitcher';
 import { Wrapper } from './Tabs.style';
 
 const Tabs = () => {
+
+  const onChangeDirection = useCallback(direction => {
+    console.log({ direction });
+  }, []);
 
   return (
     <Wrapper>
@@ -11,7 +16,10 @@ const Tabs = () => {
         <div className="tab">Phrasal</div>
       </div>
       <div className="right">
-
+        <DirectionSwitcher
+          direction="ru-en"
+          onChange={onChangeDirection}
+        />
       </div>
     </Wrapper>
   );
