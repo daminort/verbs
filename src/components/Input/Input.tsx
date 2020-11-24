@@ -31,7 +31,7 @@ const Input: FC<Props> = (props) => {
 
   const showSuccess = (status === 'success');
   const showError = (status === 'error');
-  const showMessage = !!message;
+  const showMessage = showError && !!message;
 
   const inputClass = clsx('input', {
     error: showError,

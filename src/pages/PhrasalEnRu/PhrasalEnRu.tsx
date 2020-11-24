@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { useMount } from 'react-use';
 
-const PhrasalEnRu = () => {
+import { Modes, Directions} from '../../assets/enums/app';
+import { appActions } from '../../redux/app/actions';
+
+import { Task } from '../../components/Task';
+import { FormField } from '../../components/FormField';
+
+const PhrasalEnRu: FC = () => {
+
+  const dispatch = useDispatch();
+
+  useMount(() => {
+    dispatch(appActions.pageReload(Modes.phrasal, Directions.enRu));
+  });
 
   return (
-    <div>
-      PhrasalEnRu
-    </div>
+    <>
+      <Task value="check out" />
+      <FormField label="Variant #1">
+        Variant #1
+      </FormField>
+      <FormField label="Variant #2">
+        Variant #2
+      </FormField>
+      <FormField label="Variant #3">
+        Variant #3
+      </FormField>
+    </>
   );
 };
 

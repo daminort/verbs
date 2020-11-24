@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { useMount } from 'react-use';
 
-const PhrasalRuEn = () => {
+import { Modes, Directions} from '../../assets/enums/app';
+import { appActions } from '../../redux/app/actions';
+
+import { Task } from '../../components/Task';
+
+const PhrasalRuEn: FC = () => {
+
+  const dispatch = useDispatch();
+
+  useMount(() => {
+    dispatch(appActions.pageReload(Modes.phrasal, Directions.enRu));
+  });
 
   return (
-    <div>
-      PhrasalRuEn
-    </div>
+    <>
+      <Task value="проверять" />
+    </>
   );
 };
 

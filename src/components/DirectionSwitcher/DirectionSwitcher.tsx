@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
 
+import { Directions } from '../../assets/enums/app';
 import { Icon } from '../Icon';
 import { Wrapper } from './DirectionSwitcher.style';
 
-type Direction = 'ru-en' | 'en-ru';
-
 interface Props {
-  direction: Direction;
-  onChange: (d: Direction) => void;
+  direction: Directions;
+  onChange: (d: Directions) => void;
 }
 
 const parts = {
-  'ru-en': { from: 'Ru', to: 'En' },
-  'en-ru': { from: 'En', to: 'Ru' },
+  [Directions.ruEn]: { from: 'Ru', to: 'En' },
+  [Directions.enRu]: { from: 'En', to: 'Ru' },
 }
 
 const DirectionSwitcher: FC<Props> = ({ direction, onChange }) => {

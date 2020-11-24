@@ -50,5 +50,6 @@ export const Wrapper = styled.div`
     top: 50%;
     transform: translateY(-50%);
     color: ${text.error};
+    font-size: ${size.mini};
   }
 `;
