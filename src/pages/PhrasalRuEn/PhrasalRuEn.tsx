@@ -12,7 +12,7 @@ const PhrasalRuEn: FC = () => {
   const dispatch = useDispatch();
 
   useMount(() => {
-    dispatch(appActions.pageReload(Modes.phrasal, Directions.enRu));
+    dispatch(appActions.pageReload(Modes.phrasal, Directions.ruEn));
   });
 
   return (

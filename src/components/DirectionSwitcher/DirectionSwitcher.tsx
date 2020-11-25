@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 
 import { Directions } from '../../assets/enums/app';
 import { Icon } from '../Icon';
@@ -9,17 +9,21 @@ interface Props {
   onChange: (d: Directions) => void;
 }
 
-const parts = {
-  [Directions.ruEn]: { from: 'Ru', to: 'En' },
-  [Directions.enRu]: { from: 'En', to: 'Ru' },
+const options = {
+  [Directions.ruEn]: { from: 'Ru', to: 'En', next: Directions.enRu },
+  [Directions.enRu]: { from: 'En', to: 'Ru', next: Directions.ruEn },
 }
 
 const DirectionSwitcher: FC<Props> = ({ direction, onChange }) => {
 
-  const { from, to } = parts[direction];
+  const { from, to, next } = options[direction];
+
+  const onClick = useCallback(() => {
+    onChange(next);
+  }, [onChange, next]);
 
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <span>{from}</span>
       <Icon name="right" size="small" color="normal" />
       <span>{to}</span>

@@ -9,6 +9,7 @@ type Status = 'normal' | 'success' | 'error';
 interface Props {
   value: string;
   onChange: (v: string) => void;
+  name?: string;
   placeholder?: string;
   status?: Status;
   message?: string;
@@ -20,6 +21,7 @@ const Input: FC<Props> = (props) => {
     value,
     placeholder,
     onChange,
+    name = '',
     status = 'normal',
     message = '',
     disabled = false,
@@ -40,6 +42,7 @@ const Input: FC<Props> = (props) => {
   return (
     <Wrapper>
       <input
+        name={name}
         value={value}
         disabled={disabled}
         placeholder={placeholder}

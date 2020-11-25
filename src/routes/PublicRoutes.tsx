@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 
 import { Routes } from '../assets/enums/routes';
 
@@ -16,6 +16,8 @@ const PublicRoutes = () => {
   return (
     <Switch>
       <Suspense fallback={<div />}>
+        <Route exact path={Routes.root} component={() => <Redirect to={Routes.irregularRuEn} />} />
+
         <Route exact path={Routes.irregularRuEn} component={IrregularRuEn} />
         <Route exact path={Routes.irregularEnRu} component={IrregularEnRu} />
         <Route exact path={Routes.irregularNew} component={IrregularNew} />

@@ -7,6 +7,7 @@ import { appActions } from '../../redux/app/actions';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
+import { Radio, RadioGroup } from '../../components/Radio';
 
 const IrregularEnRu: FC = () => {
 
@@ -19,15 +20,28 @@ const IrregularEnRu: FC = () => {
   return (
     <>
       <Task value="drank" />
-      <FormField label="Variant #1">
-        Variant #1
-      </FormField>
-      <FormField label="Variant #2">
-        Variant #2
-      </FormField>
-      <FormField label="Variant #3">
-        Variant #3
-      </FormField>
+      <RadioGroup onSelect={(name) => console.log(name)}>
+        <FormField label="Variant #1">
+          <Radio
+            name="variant1"
+            label="бороться"
+            status="error"
+          />
+        </FormField>
+        <FormField label="Variant #2">
+          <Radio
+            name="variant2"
+            label="пить"
+            status="success"
+          />
+        </FormField>
+        <FormField label="Variant #3">
+          <Radio
+            name="variant3"
+            label="спать"
+          />
+        </FormField>
+      </RadioGroup>
     </>
   );
 };

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: 1rem;
   color: ${text.accent};
   

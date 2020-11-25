@@ -12,8 +12,8 @@ import { Wrapper } from './Tabs.style';
 const Tabs = () => {
 
   const dispatch = useDispatch();
-  const mode = useSelector(selectMode);
-  const direction = useSelector(selectDirection);
+  const mode: Modes = useSelector(selectMode);
+  const direction: Directions = useSelector(selectDirection);
 
   const onChangeMode = useCallback((mode: Modes) => () => {
     dispatch(appActions.modeChange(mode));
