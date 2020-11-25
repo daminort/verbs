@@ -6,7 +6,7 @@ import { Wrapper } from './FormField.style';
 type IconType = 'success' | 'error';
 
 interface Props {
-  label: string;
+  label: string | React.ReactNode;
   icon?: IconType;
 }
 

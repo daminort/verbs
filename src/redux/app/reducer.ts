@@ -5,6 +5,7 @@ import { AppActionsTypes, AppState } from './types';
 const initState: AppState = {
   mode: Modes.irregular,
   direction: Directions.ruEn,
+  loading: false,
 };
 
 export function appReducer(state: AppState = initState, action: AppAction): AppState {
@@ -19,6 +20,12 @@ export function appReducer(state: AppState = initState, action: AppAction): AppS
       return {
         ...state,
         direction: action.payload.direction,
+      };
+    }
+    case AppActionsTypes.LOADING_SET: {
+      return {
+        ...state,
+        loading: action.payload.loading,
       };
     }
     default: {

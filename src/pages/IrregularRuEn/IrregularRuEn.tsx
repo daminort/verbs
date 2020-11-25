@@ -1,21 +1,36 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMount } from 'react-use';
 
 import { Modes, Directions} from '../../assets/enums/app';
 import { appActions } from '../../redux/app/actions';
+import { selectLoading } from '../../redux/app/selectors';
+import { selectRunning } from '../../redux/timer/selectors';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
 import { Input } from '../../components/Input';
 
+import { IrregularRuEn as Skeleton } from '../../components/Skeletons';
+import { IrregularRuEn as Placeholder } from '../../components/Placeholders';
+
 const IrregularRuEn: FC = () => {
 
   const dispatch = useDispatch();
+  const loading = useSelector(selectLoading);
+  const running = useSelector(selectRunning);
 
   useMount(() => {
     dispatch(appActions.pageReload(Modes.irregular, Directions.ruEn));
   });
+
+  if (loading) {
+    return <Skeleton />;
+  };
+
+  if (!running) {
+    return <Placeholder />;
+  };
 
   return (
     <>

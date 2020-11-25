@@ -38,5 +38,11 @@ export const THEME = {
     accent: 'filter: invert(0.9) sepia(0)',
     success: 'filter: invert(0.5) sepia(1) saturate(100) hue-rotate(140deg)',
     error: 'filter: invert(0.5) sepia(1) saturate(100) hue-rotate(390deg)',
+  },
+  skeleton: {
+    start: '#484848',
+    middle: '#1d1d1d',
+    end: '#484848',
   }
+
 };

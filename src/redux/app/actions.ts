@@ -19,6 +19,10 @@ export const appActions = {
     AppActionsTypes.DIRECTION_SET,
     { direction },
   ),
+  loadingSet: (loading: boolean) => createAction(
+    AppActionsTypes.LOADING_SET,
+    { loading },
+  ),
   pageReload: (mode: Modes, direction: Directions) => createAction(
     AppActionsTypes.PAGE_RELOAD,
     { mode, direction },

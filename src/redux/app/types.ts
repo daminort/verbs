@@ -5,10 +5,12 @@ export enum AppActionsTypes {
   MODE_SET = '[App] mode-set',
   DIRECTION_CHANGE = '[App] direction-change',
   DIRECTION_SET = '[App] direction-set',
+  LOADING_SET = '[App] loading-set',
   PAGE_RELOAD = '[App] page-reload',
 };
 
 export interface AppState {
   mode: Modes;
-  direction: Directions,
+  direction: Directions;
+  loading: boolean;
 };
