@@ -1,10 +1,9 @@
 import React, { FC, useCallback, ChangeEvent } from 'react';
 import clsx from 'clsx';
 
+import { Status } from '../../assets/types/input';
 import { Icon } from '../Icon';
 import { Wrapper } from './Input.style';
-
-type Status = 'normal' | 'success' | 'error';
 
 interface Props {
   value: string;

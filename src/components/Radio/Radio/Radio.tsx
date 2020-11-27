@@ -43,6 +43,7 @@ const Radio: FC<Props> = (props) => {
           className="radio"
           name={name}
           checked={checked}
+          onChange={() => {}}
         />
         <span className={labelClass}>{label}</span>
       </label>

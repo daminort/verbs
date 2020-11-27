@@ -1,7 +1,7 @@
 import { appReducer } from './app/reducer';
-import { timerReducer } from './timer/reducer';
+import { sessionReducer } from './session/reducer';
 
 export default {
   App: appReducer,
-  Timer: timerReducer,
+  Session: sessionReducer,
 };

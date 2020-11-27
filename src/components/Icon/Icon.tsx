@@ -9,15 +9,16 @@ interface Props {
   name: IconName;
   size: IconSize;
   color: IconColor;
+  onClick?: () => void;
 }
 
-const Icon: FC<Props> = ({ name, size, color }) => {
+const Icon: FC<Props> = ({ name, size, color, onClick }) => {
 
   const src = icons[name];
   const cls = `icon ${size} ${color}`;
 
   return (
-    <Span className={cls}>
+    <Span className={cls} onClick={onClick}>
       <img src={src} />
     </Span>
   );

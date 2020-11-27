@@ -3,8 +3,8 @@ import { push } from 'connected-react-router';
 
 import { Modes, Directions } from '../../assets/enums/app';
 
-import { timerActions } from '../timer/actions';
-import { selectRunning } from '../timer/selectors';
+import { sessionActions } from '../session/actions';
+import { selectIsSessionActive } from '../session/selectors';
 
 import { AppActionsTypes } from './types'
 import { appActions } from './actions';
@@ -28,12 +28,10 @@ function* directionChange(action: ReturnType<typeof appActions.directionChange>)
 
 function* pageReload(action: ReturnType<typeof appActions.pageReload>) {
   const { mode, direction } = action.payload;
-  const running: Boolean = yield select(selectRunning);
+  const isSessionActive: Boolean = yield select(selectIsSessionActive);
 
-  if (running) {
-    yield put(timerActions.stop());
-    // TODO
-    // collect and store current results and statistics
+  if (isSessionActive) {
+    yield put(sessionActions.stop());
   }
 
   yield put(appActions.modeSet(mode));

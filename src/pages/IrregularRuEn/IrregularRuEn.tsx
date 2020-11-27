@@ -1,24 +1,50 @@
-import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC, useState } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useMount } from 'react-use';
 
+import { HashMap, GenericMap } from '../../assets/types/common';
 import { Modes, Directions} from '../../assets/enums/app';
+import { Status } from '../../assets/types/input';
 import { appActions } from '../../redux/app/actions';
 import { selectLoading } from '../../redux/app/selectors';
-import { selectRunning } from '../../redux/timer/selectors';
+import {
+  selectIsSessionActive,
+  selectCurrentIrregularRuEn,
+} from '../../redux/session/selectors';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
 import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { ButtonsBlock } from '../../components/ButtonsBlock/ButtonsBlock';
 
 import { IrregularRuEn as Skeleton } from '../../components/Skeletons';
 import { IrregularRuEn as Placeholder } from '../../components/Placeholders';
+
+const defaultStatus: GenericMap<Status> = {
+  infinitive: 'normal',
+  pastSimple: 'normal',
+  pastParticipant: 'normal',
+};
+
+const defaultErrors: HashMap = {
+  infinitive: '',
+  pastSimple: '',
+  pastParticipant: '',
+};
 
 const IrregularRuEn: FC = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
-  const running = useSelector(selectRunning);
+  const isSessionActive = useSelector(selectIsSessionActive);
+  const currentItem = useSelector(selectCurrentIrregularRuEn, shallowEqual);
+
+  const [infinitive, setInfinitive] = useState('');
+  const [pastSimple, setPastSimple] = useState('');
+  const [pastParticipant, setPastParticipant] = useState('');
+  const [status, setStatus] = useState(defaultStatus);
+  const [errors, setErrors] = useState(defaultErrors);
 
   useMount(() => {
     dispatch(appActions.pageReload(Modes.irregular, Directions.ruEn));
@@ -28,40 +54,51 @@ const IrregularRuEn: FC = () => {
     return <Skeleton />;
   };
 
-  if (!running) {
+  if (!isSessionActive) {
     return <Placeholder />;
   };
 
   return (
     <>
-      <Task value="пить" />
+      <Task value={currentItem.translation} />
       <FormField label="Infinitive">
         <Input
+          name="infinitive"
           placeholder="infinitive"
-          value={'drink'}
-          status="success"
-          message=""
-          onChange={() => {}}
+          value={infinitive}
+          status={status.infinitive}
+          message={errors.infinitive}
+          onChange={setInfinitive}
         />
       </FormField>
       <FormField label="Past Simple">
         <Input
+          name="pastSimple"
           placeholder="past simple"
-          value={'drink'}
-          status="error"
-          message="drank"
-          onChange={() => {}}
+          value={pastSimple}
+          status={status.pastSimple}
+          message={errors.pastSimple}
+          onChange={setPastSimple}
         />
       </FormField>
       <FormField label="Past Participle">
         <Input
+          name="pastParticipant"
           placeholder="past participle"
-          value={'drunk'}
-          status="success"
-          message=""
-          onChange={() => {}}
+          value={pastParticipant}
+          status={status.pastParticipant}
+          message={errors.pastParticipant}
+          onChange={setPastParticipant}
         />
       </FormField>
+      <ButtonsBlock>
+        <Button onClick={() => {}}>
+          Check
+        </Button>
+        <Button onClick={() => {}}>
+          Next
+        </Button>
+      </ButtonsBlock>
     </>
   );
 };

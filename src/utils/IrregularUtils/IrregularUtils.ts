@@ -1,17 +1,23 @@
 import { IrregularVerbs, IrregularVerb } from '../../assets/types/verbs';
+import { IrregularRuEnItem, IrregularRuEnSet } from '../../assets/types/sessionSets';
 import { irregularVerbs } from '../../verbs/irregular';
 import { CommonUtils } from '../CommonUtils';
 
+interface DividedRuEnSet {
+  debtVerbs: IrregularRuEnSet,
+  sessionVerbs: IrregularRuEnSet,
+};
+
 class IrregularUtils {
 
-  static createDividedSet(
+  static createDividedRuEnSet(
     debts: string[] = [],
     excludes: string[] = [],
     userSet: IrregularVerbs = [],
-  ) {
+  ): DividedRuEnSet {
 
-    const debtVerbs = [];
-    const sessionVerbs = [];
+    const debtVerbs: IrregularRuEnSet = [];
+    const sessionVerbs: IrregularRuEnSet = [];
 
     for (let verb of irregularVerbs) {
       const isExcluded = excludes.includes(verb.key);
@@ -44,20 +50,21 @@ class IrregularUtils {
     }
 
     return {
-      debtVerbs: CommonUtils.shuffle<IrregularVerb>(debtVerbs),
-      sessionVerbs: CommonUtils.shuffle<IrregularVerb>(sessionVerbs),
+      debtVerbs: CommonUtils.shuffle<IrregularRuEnItem>(debtVerbs),
+      sessionVerbs: CommonUtils.shuffle<IrregularRuEnItem>(sessionVerbs),
     };
   }
 
-  static createSessionSet(
+  static createRuEnSessionSet(
     debts: string[] = [],
     excludes: string[] = [],
     userSet: IrregularVerbs = [],
-  ): IrregularVerbs {
+  ): IrregularRuEnSet {
 
-    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedSet(debts, excludes, userSet);
+    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedRuEnSet(debts, excludes, userSet);
+    const result: IrregularRuEnSet = [...debtVerbs, ...sessionVerbs];
 
-    return [...debtVerbs, ...sessionVerbs];
+    return result;
   }
 };
 
