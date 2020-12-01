@@ -1,9 +1,10 @@
-import { SessionStatus } from '../../assets/enums/session';
+import { SessionPhase, SessionStatus } from '../../assets/enums/session';
 import { SessionAction } from './actions';
 import { SessionActionsTypes, SessionState } from './types';
 
 const initState: SessionState = {
   status: SessionStatus.inactive,
+  phase: SessionPhase.waiting,
   irregularRuEnSet: [],
 };
 
@@ -13,6 +14,12 @@ export function sessionReducer(state: SessionState = initState, action: SessionA
       return {
         ...state,
         status: action.payload.status,
+      };
+    }
+    case SessionActionsTypes.PHASE_SET: {
+      return {
+        ...state,
+        phase: action.payload.phase,
       };
     }
     case SessionActionsTypes.IRREGULAR_RU_EN_SET_REFRESH: {

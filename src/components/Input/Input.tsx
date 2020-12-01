@@ -1,4 +1,4 @@
-import React, { FC, useCallback, ChangeEvent } from 'react';
+import React, { FC, useCallback, ChangeEvent, forwardRef, Ref } from 'react';
 import clsx from 'clsx';
 
 import { Status } from '../../assets/types/input';
@@ -13,9 +13,10 @@ interface Props {
   status?: Status;
   message?: string;
   disabled?: boolean;
+  tabIndex?: number;
 }
 
-const Input: FC<Props> = (props) => {
+const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
   const {
     value,
     placeholder,
@@ -24,6 +25,7 @@ const Input: FC<Props> = (props) => {
     status = 'normal',
     message = '',
     disabled = false,
+    tabIndex,
   } = props;
 
   const onChangeValue = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +43,14 @@ const Input: FC<Props> = (props) => {
   return (
     <Wrapper>
       <input
+        ref={ref}
         name={name}
         value={value}
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChangeValue}
         className={inputClass}
+        tabIndex={tabIndex}
       />
       {showSuccess && (
         <Icon name="check" size="small" color="success" />
@@ -59,7 +63,7 @@ const Input: FC<Props> = (props) => {
       )}
     </Wrapper>
   );
-};
+});
 
 export default Input;
 export { Input };

@@ -17,14 +17,14 @@ export const Wrapper = styled.div`
     padding: 0.5rem;
     font-family: inherit;
     background-color: ${bg.input};
+
+    &::placeholder {
+      color: ${text.main};
+    }
     
     &.error {
       color: ${text.main};
       text-decoration: line-through;
-    }
-    
-    &::placeholder {
-      color: ${text.main};
     }
     
     &:focus {

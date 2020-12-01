@@ -1,16 +1,21 @@
-import React, { FC, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useMount } from 'react-use';
 
-import { HashMap, GenericMap } from '../../assets/types/common';
-import { Modes, Directions} from '../../assets/enums/app';
+import { GenericMap, HashMap } from '../../assets/types/common';
+import { Directions, Modes } from '../../assets/enums/app';
+import { SessionPhase } from '../../assets/enums/session';
 import { Status } from '../../assets/types/input';
+
+import { IrregularUtils } from '../../utils/IrregularUtils';
+
 import { appActions } from '../../redux/app/actions';
+import { sessionActions } from '../../redux/session/actions';
 import { selectLoading } from '../../redux/app/selectors';
 import {
-  selectIsSessionActive,
   selectCurrentIrregularRuEn,
-} from '../../redux/session/selectors';
+  selectIsSessionActive,
+  selectSessionPhase,} from '../../redux/session/selectors';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
@@ -38,6 +43,7 @@ const IrregularRuEn: FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const isSessionActive = useSelector(selectIsSessionActive);
+  const phase = useSelector(selectSessionPhase);
   const currentItem = useSelector(selectCurrentIrregularRuEn, shallowEqual);
 
   const [infinitive, setInfinitive] = useState('');
@@ -46,9 +52,48 @@ const IrregularRuEn: FC = () => {
   const [status, setStatus] = useState(defaultStatus);
   const [errors, setErrors] = useState(defaultErrors);
 
+  const infinitiveRef = useRef<HTMLInputElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
+
   useMount(() => {
     dispatch(appActions.pageReload(Modes.irregular, Directions.ruEn));
   });
+
+  useEffect(() => {
+    if (infinitiveRef.current) {
+      infinitiveRef.current.focus();
+    }
+
+    setInfinitive('');
+    setPastSimple('');
+    setPastParticipant('');
+    setStatus(defaultStatus);
+    setErrors(defaultErrors);
+
+  }, [currentItem, setInfinitive, setPastSimple, setPastParticipant]);
+
+  useEffect(() => {
+    if (nextRef.current && phase === SessionPhase.results) {
+      nextRef.current.focus();
+    }
+  }, [phase]);
+
+  const onClickCheck = useCallback(() => {
+    const values = {
+      infinitive,
+      pastSimple,
+      pastParticipant,
+    };
+    const { status, errors } = IrregularUtils.validateRuEn(currentItem, values);
+    setStatus(status);
+    setErrors(errors);
+    dispatch(sessionActions.phaseSet(SessionPhase.results));
+
+  }, [dispatch, currentItem, infinitive, pastSimple, pastParticipant, setStatus, setErrors]);
+
+  const onClickNext = useCallback(() => {
+    dispatch(sessionActions.next());
+  },[dispatch]);
 
   if (loading) {
     return <Skeleton />;
@@ -58,13 +103,24 @@ const IrregularRuEn: FC = () => {
     return <Placeholder />;
   };
 
+  const isCheckDisabled = (phase === SessionPhase.validation || phase === SessionPhase.results);
+  const isNextDisabled = (phase === SessionPhase.waiting || phase === SessionPhase.validation);
+
+  const placeholders = {
+    infinitive: errors.infinitive ? '' : 'infinitive',
+    pastSimple: errors.pastSimple ? '' : 'past simple',
+    pastParticipant: errors.pastParticipant ? '' : 'past participant',
+  }
+
   return (
     <>
       <Task value={currentItem.translation} />
       <FormField label="Infinitive">
         <Input
           name="infinitive"
-          placeholder="infinitive"
+          tabIndex={1}
+          placeholder={placeholders.infinitive}
+          ref={infinitiveRef}
           value={infinitive}
           status={status.infinitive}
           message={errors.infinitive}
@@ -74,7 +130,8 @@ const IrregularRuEn: FC = () => {
       <FormField label="Past Simple">
         <Input
           name="pastSimple"
-          placeholder="past simple"
+          tabIndex={2}
+          placeholder={placeholders.pastSimple}
           value={pastSimple}
           status={status.pastSimple}
           message={errors.pastSimple}
@@ -84,7 +141,8 @@ const IrregularRuEn: FC = () => {
       <FormField label="Past Participle">
         <Input
           name="pastParticipant"
-          placeholder="past participle"
+          tabIndex={3}
+          placeholder={placeholders.pastParticipant}
           value={pastParticipant}
           status={status.pastParticipant}
           message={errors.pastParticipant}
@@ -92,10 +150,19 @@ const IrregularRuEn: FC = () => {
         />
       </FormField>
       <ButtonsBlock>
-        <Button onClick={() => {}}>
+        <Button
+          tabIndex={4}
+          disabled={isCheckDisabled}
+          onClick={onClickCheck}
+        >
           Check
         </Button>
-        <Button onClick={() => {}}>
+        <Button
+          tabIndex={5}
+          ref={nextRef}
+          disabled={isNextDisabled}
+          onClick={onClickNext}
+        >
           Next
         </Button>
       </ButtonsBlock>
