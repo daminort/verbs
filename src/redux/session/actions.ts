@@ -5,8 +5,11 @@ import { IrregularRuEnSet } from '../../assets/types/sessionSets';
 
 export const sessionActions = {
   start: () => createAction(SessionActionsTypes.START),
-  next: () => createAction(SessionActionsTypes.NEXT),
   stop: () => createAction(SessionActionsTypes.STOP),
+  next: (isError: boolean) => createAction(
+    SessionActionsTypes.NEXT,
+    { isError },
+  ),
   statusSet: (status: SessionStatus) => createAction(
     SessionActionsTypes.STATUS_SET,
     { status },

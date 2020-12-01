@@ -22,13 +22,18 @@ function* start(action: ReturnType<typeof sessionActions.start>) {
 }
 
 function* next(action: ReturnType<typeof sessionActions.next>) {
+  const { isError } = action.payload;
+
   const isIrregularRuEn = yield select(selectIsIrregularRuEn);
 
   if (isIrregularRuEn) {
     const sessionSet = yield select(selectIrregularRuEnSet);
     const currentItem = yield select(selectCurrentIrregularRuEn);
-    // TODO: fix if there is an error in the exercise
+    // TODO: check if there is an error in the exercise
     // ...
+    if (isError) {
+      // TODO: save debt for future
+    }
 
     const nextSet = sessionSet.slice(1);
     yield put(sessionActions.phaseSet(SessionPhase.waiting));

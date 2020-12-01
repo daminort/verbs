@@ -92,8 +92,9 @@ const IrregularRuEn: FC = () => {
   }, [dispatch, currentItem, infinitive, pastSimple, pastParticipant, setStatus, setErrors]);
 
   const onClickNext = useCallback(() => {
-    dispatch(sessionActions.next());
-  },[dispatch]);
+    const isError = Object.values(status).some(status => status === 'error');
+    dispatch(sessionActions.next(isError));
+  },[dispatch, status]);
 
   if (loading) {
     return <Skeleton />;
