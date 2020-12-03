@@ -15,7 +15,7 @@ import {
 class IrregularUtils {
 
   static createDividedRuEnSet(
-    debts: string[] = [],
+    debt: string[] = [],
     excludes: string[] = [],
     userSet: IrregularVerbs = [],
   ): DividedRuEnSet {
@@ -29,7 +29,7 @@ class IrregularUtils {
         continue;
       }
 
-      const isDebt = debts.includes(verb.key);
+      const isDebt = debt.includes(verb.key);
       if (isDebt) {
         debtVerbs.push(verb);
 
@@ -44,7 +44,7 @@ class IrregularUtils {
         continue;
       }
 
-      const isDebt = debts.includes(verb.key);
+      const isDebt = debt.includes(verb.key);
       if (isDebt) {
         debtVerbs.push(verb);
 
@@ -60,12 +60,12 @@ class IrregularUtils {
   }
 
   static createRuEnSessionSet(
-    debts: string[] = [],
+    debt: string[] = [],
     excludes: string[] = [],
     userSet: IrregularVerbs = [],
   ): IrregularRuEnSet {
 
-    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedRuEnSet(debts, excludes, userSet);
+    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedRuEnSet(debt, excludes, userSet);
     const result: IrregularRuEnSet = [...debtVerbs, ...sessionVerbs];
 
     return result;

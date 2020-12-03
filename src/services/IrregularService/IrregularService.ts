@@ -9,13 +9,17 @@ class IrregularService {
 
   async loadRuEn(): Promise<IrregularRuEnSet> {
 
-    const debts: string[] = StorageUtils.read<string[]>(StorageKeys.irregularDebt, []);
-    const excludes: string[] = StorageUtils.read<string[]>(StorageKeys.irregularExcludes, []);
+    const debt: Array<string> = StorageUtils.read<Array<string>>(StorageKeys.irregularDebt, []);
+    const excludes: Array<string> = StorageUtils.read<Array<string>>(StorageKeys.irregularExcludes, []);
     const userSet: IrregularVerbs = StorageUtils.read<IrregularVerbs>(StorageKeys.irregularExcludes, []);
 
-    const sessionSet: IrregularRuEnSet = IrregularUtils.createRuEnSessionSet(debts, excludes, userSet);
+    const sessionSet: IrregularRuEnSet = IrregularUtils.createRuEnSessionSet(debt, excludes, userSet);
 
     return Promise.resolve(sessionSet);
+  }
+
+  async saveDebtRuEn(debt: Array<string>): Promise<void> {
+    StorageUtils.write<Array<string>>(StorageKeys.irregularDebt, debt);
   }
 }
 

@@ -25,6 +25,10 @@ export const sessionActions = {
     SessionActionsTypes.IRREGULAR_RU_EN_SET_REFRESH,
     { irregularRuEnSet },
   ),
+  irregularRuEnDebtRefresh: (irregularRuEnDebt: Array<string>) => createAction(
+    SessionActionsTypes.IRREGULAR_RU_EN_DEBT_REFRESH,
+    { irregularRuEnDebt },
+  ),
 };
 
 export type SessionAction = ActionUnion<typeof sessionActions>;

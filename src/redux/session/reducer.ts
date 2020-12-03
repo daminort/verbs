@@ -6,6 +6,7 @@ const initState: SessionState = {
   status: SessionStatus.inactive,
   phase: SessionPhase.waiting,
   irregularRuEnSet: [],
+  irregularRuEnDebt: [],
 };
 
 export function sessionReducer(state: SessionState = initState, action: SessionAction): SessionState {
@@ -26,6 +27,12 @@ export function sessionReducer(state: SessionState = initState, action: SessionA
       return {
         ...state,
         irregularRuEnSet: action.payload.irregularRuEnSet,
+      };
+    }
+    case SessionActionsTypes.IRREGULAR_RU_EN_DEBT_REFRESH: {
+      return {
+        ...state,
+        irregularRuEnDebt: action.payload.irregularRuEnDebt,
       };
     }
     default: {

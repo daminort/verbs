@@ -4,7 +4,11 @@ import { SessionPhase, SessionStatus } from '../../assets/enums/session';
 import { IrregularService } from '../../services/IrregularService/IrregularService';
 
 import { selectIsIrregularRuEn } from '../app/selectors';
-import { selectIrregularRuEnSet, selectCurrentIrregularRuEn } from '../session/selectors';
+import {
+  selectIrregularRuEnSet,
+  selectCurrentIrregularRuEn,
+  selectIrregularRuEnDebt,
+} from '../session/selectors';
 
 import { SessionActionsTypes } from './types';
 import { sessionActions } from './actions';
@@ -29,10 +33,11 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
   if (isIrregularRuEn) {
     const sessionSet = yield select(selectIrregularRuEnSet);
     const currentItem = yield select(selectCurrentIrregularRuEn);
-    // TODO: check if there is an error in the exercise
-    // ...
+
     if (isError) {
-      // TODO: save debt for future
+      const debt: Array<string> = yield select(selectIrregularRuEnDebt);
+      debt.push(currentItem.key);
+      yield put(sessionActions.irregularRuEnDebtRefresh(debt));
     }
 
     const nextSet = sessionSet.slice(1);
@@ -42,6 +47,8 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
 }
 
 function* stop(action: ReturnType<typeof sessionActions.stop>) {
+  const debt: Array<string> = yield select(selectIrregularRuEnDebt);
+  yield call(IrregularService.saveDebtRuEn, debt);
   yield put(sessionActions.statusSet(SessionStatus.inactive));
 }
 
@@ -49,6 +56,7 @@ function* irregularRuEnSetReload(action: ReturnType<typeof sessionActions.irregu
 
   const sessionSet: IrregularRuEnSet = yield call(IrregularService.loadRuEn);
 
+  yield put(sessionActions.irregularRuEnDebtRefresh([]));
   yield put(sessionActions.irregularRuEnSetRefresh(sessionSet));
 }
 

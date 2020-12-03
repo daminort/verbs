@@ -11,10 +11,13 @@ export enum SessionActionsTypes {
 
   IRREGULAR_RU_EN_SET_RELOAD = '[Session] irregular-ru-en-set-reload',
   IRREGULAR_RU_EN_SET_REFRESH = '[Session] irregular-ru-en-set-refresh',
+  IRREGULAR_RU_EN_DEBT_REFRESH = '[Session] irregular-ru-en-debt-refresh',
 };
 
 export interface SessionState {
   status: SessionStatus;
   phase: SessionPhase;
+
   irregularRuEnSet: IrregularRuEnSet;
+  irregularRuEnDebt: Array<string>;
 };
