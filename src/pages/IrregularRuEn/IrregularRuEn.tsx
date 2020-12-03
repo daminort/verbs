@@ -26,6 +26,8 @@ import { ButtonsBlock } from '../../components/ButtonsBlock/ButtonsBlock';
 import { IrregularRuEn as Skeleton } from '../../components/Skeletons';
 import { IrregularRuEn as Placeholder } from '../../components/Placeholders';
 
+import { Score } from '../../containers/Score';
+
 const defaultStatus: GenericMap<Status> = {
   infinitive: 'normal',
   pastSimple: 'normal',
@@ -167,6 +169,8 @@ const IrregularRuEn: FC = () => {
           Next
         </Button>
       </ButtonsBlock>
+
+      <Score />
     </>
   );
 };
