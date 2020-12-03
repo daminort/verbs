@@ -103,7 +103,14 @@ const IrregularRuEn: FC = () => {
   };
 
   if (!isSessionActive) {
-    return <Placeholder />;
+    return (
+      <>
+        <Placeholder />
+        {phase === SessionPhase.finish && (
+          <Score />
+        )}
+      </>
+    );
   };
 
   const isCheckDisabled = (phase === SessionPhase.validation || phase === SessionPhase.results);

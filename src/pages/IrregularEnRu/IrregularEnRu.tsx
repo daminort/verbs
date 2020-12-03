@@ -19,29 +19,29 @@ const IrregularEnRu: FC = () => {
 
   return (
     <>
-      <Task value="drank" />
-      <RadioGroup onSelect={(name) => console.log(name)}>
-        <FormField label="Variant #1">
-          <Radio
-            name="variant1"
-            label="бороться"
-            status="error"
-          />
-        </FormField>
-        <FormField label="Variant #2">
-          <Radio
-            name="variant2"
-            label="пить"
-            status="success"
-          />
-        </FormField>
-        <FormField label="Variant #3">
-          <Radio
-            name="variant3"
-            label="спать"
-          />
-        </FormField>
-      </RadioGroup>
+      <Task value="coming soon..." />
+      {/*<RadioGroup onSelect={(name) => console.log(name)}>*/}
+      {/*  <FormField label="Variant #1">*/}
+      {/*    <Radio*/}
+      {/*      name="variant1"*/}
+      {/*      label="бороться"*/}
+      {/*      status="error"*/}
+      {/*    />*/}
+      {/*  </FormField>*/}
+      {/*  <FormField label="Variant #2">*/}
+      {/*    <Radio*/}
+      {/*      name="variant2"*/}
+      {/*      label="пить"*/}
+      {/*      status="success"*/}
+      {/*    />*/}
+      {/*  </FormField>*/}
+      {/*  <FormField label="Variant #3">*/}
+      {/*    <Radio*/}
+      {/*      name="variant3"*/}
+      {/*      label="спать"*/}
+      {/*    />*/}
+      {/*  </FormField>*/}
+      {/*</RadioGroup>*/}
     </>
   );
 };

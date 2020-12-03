@@ -18,16 +18,16 @@ const PhrasalEnRu: FC = () => {
 
   return (
     <>
-      <Task value="check out" />
-      <FormField label="Variant #1">
-        Variant #1
-      </FormField>
-      <FormField label="Variant #2">
-        Variant #2
-      </FormField>
-      <FormField label="Variant #3">
-        Variant #3
-      </FormField>
+      <Task value="coming soon..." />
+      {/*<FormField label="Variant #1">*/}
+      {/*  Variant #1*/}
+      {/*</FormField>*/}
+      {/*<FormField label="Variant #2">*/}
+      {/*  Variant #2*/}
+      {/*</FormField>*/}
+      {/*<FormField label="Variant #3">*/}
+      {/*  Variant #3*/}
+      {/*</FormField>*/}
     </>
   );
 };

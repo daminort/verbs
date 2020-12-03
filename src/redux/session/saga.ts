@@ -2,7 +2,7 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { SessionPhase, SessionStatus } from '../../assets/enums/session';
 import { IrregularRuEnSet } from '../../assets/types/sessionSets';
-import { IrregularService } from '../../services/IrregularService/IrregularService';
+import { IrregularService } from '../../services/IrregularService';
 
 import { scoreActions } from '../score/actions';
 import { selectCorrect, selectWrong } from '../score/selectors';
@@ -16,6 +16,7 @@ import {
 
 import { SessionActionsTypes } from './types';
 import { sessionActions } from './actions';
+import { nextIrregularRuEn } from './helpers';
 
 function* start(action: ReturnType<typeof sessionActions.start>) {
   const isIrregularRuEn = yield select(selectIsIrregularRuEn);
@@ -33,22 +34,11 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
   const { isError } = action.payload;
 
   const isIrregularRuEn = yield select(selectIsIrregularRuEn);
+  const isIrregularEnRu = false;
+  const isPhrasalRuEn = false;
+  const isPhrasalEnRu = false;
 
-  if (isIrregularRuEn) {
-    const sessionSet = yield select(selectIrregularRuEnSet);
-    const currentItem = yield select(selectCurrentIrregularRuEn);
-
-    if (isError) {
-      const debt: Array<string> = yield select(selectIrregularRuEnDebt);
-      debt.push(currentItem.key);
-      yield put(sessionActions.irregularRuEnDebtRefresh(debt));
-    }
-
-    const nextSet = sessionSet.slice(1);
-    yield put(sessionActions.phaseSet(SessionPhase.waiting));
-    yield put(sessionActions.irregularRuEnSetRefresh(nextSet));
-  }
-
+  // score
   if (isError) {
     const wrong = yield select(selectWrong);
     yield put(scoreActions.wrongSet(wrong + 1));
@@ -56,6 +46,20 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
   } else {
     const correct = yield select(selectCorrect);
     yield put(scoreActions.correctSet(correct + 1));
+  }
+
+  // exercises
+  if (isIrregularRuEn) {
+    yield call(nextIrregularRuEn, isError);
+  }
+  if (isIrregularEnRu) {
+    // TODO: process results for Irregular En-Ru
+  }
+  if (isPhrasalRuEn) {
+    // TODO: process results for Phrasal Ru-En
+  }
+  if (isPhrasalEnRu) {
+    // TODO: process results for Phrasal En-Ru
   }
 }
 

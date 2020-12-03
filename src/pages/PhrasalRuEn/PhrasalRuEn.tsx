@@ -17,7 +17,7 @@ const PhrasalRuEn: FC = () => {
 
   return (
     <>
-      <Task value="проверять" />
+      <Task value="coming soon..." />
     </>
   );
 };

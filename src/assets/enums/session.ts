@@ -7,4 +7,5 @@ export enum SessionPhase {
   waiting = 'waiting',
   validation = 'validation',
   results = 'results',
+  finish = 'finish',
 };
