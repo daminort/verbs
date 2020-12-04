@@ -1,5 +1,5 @@
 export type CommonObject = {
-  [key: string]: any;
+  [key: string]: never;
 };
 
 export type HashMap = {
