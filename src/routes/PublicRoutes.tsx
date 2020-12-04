@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { FC, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 
 import { Routes } from '../assets/enums/routes';
@@ -11,7 +11,7 @@ const PhrasalRuEn = lazy(() => import('../pages/PhrasalRuEn'));
 const PhrasalEnRu = lazy(() => import('../pages/PhrasalEnRu'));
 const PhrasalNew = lazy(() => import('../pages/PhrasalNew'));
 
-const PublicRoutes = () => {
+const PublicRoutes: FC = () => {
   return (
     <Switch>
       <Suspense fallback={<div />}>

@@ -5,7 +5,7 @@ import { FormField } from '../../FormField';
 import { BlockText, BlockInput } from '../Blocks';
 import { Wrapper } from './IrregularRuEn.style';
 
-const IrregularRuEn = () => {
+const IrregularRuEn: FC = () => {
   return (
     <Wrapper>
       <Task disabled value="loading..." />

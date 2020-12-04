@@ -38,6 +38,7 @@ function* pageReload(action: ReturnType<typeof appActions.pageReload>) {
   yield put(appActions.directionSet(direction));
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function* appSaga() {
   yield all([
     takeLatest(AppActionsTypes.MODE_CHANGE, modeChange),

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, ChangeEvent, forwardRef, Ref } from 'react';
+import React, { useCallback, ChangeEvent, forwardRef, Ref } from 'react';
 import clsx from 'clsx';
 
 import { Status } from '../../assets/types/input';

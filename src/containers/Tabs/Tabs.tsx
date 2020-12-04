@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +9,7 @@ import { selectMode, selectDirection } from '../../redux/app/selectors';
 import { DirectionSwitcher } from '../../components/DirectionSwitcher';
 import { Wrapper } from './Tabs.style';
 
-const Tabs = () => {
+const Tabs: FC = () => {
   const dispatch = useDispatch();
   const mode: Modes = useSelector(selectMode);
   const direction: Directions = useSelector(selectDirection);

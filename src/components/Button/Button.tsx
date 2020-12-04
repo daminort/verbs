@@ -1,8 +1,9 @@
-import React, { Ref, forwardRef, PropsWithChildren } from 'react';
+import React, { Ref, forwardRef, ReactNode } from 'react';
 
 import { StyledBtn } from './Button.style';
 
-interface Props extends PropsWithChildren<any> {
+interface Props {
+  children: ReactNode;
   onClick: () => void;
   disabled?: boolean;
   tabIndex?: number;
@@ -17,6 +18,8 @@ const Button = forwardRef((props: Props, ref: Ref<HTMLButtonElement>) => {
     </StyledBtn>
   );
 });
+
+Button.displayName = 'Button';
 
 export default Button;
 export { Button };

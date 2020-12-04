@@ -8,13 +8,17 @@ import { scoreActions } from '../score/actions';
 import { selectCorrect, selectWrong } from '../score/selectors';
 
 import { selectIsIrregularRuEn } from '../app/selectors';
-import { selectIrregularRuEnSet, selectCurrentIrregularRuEn, selectIrregularRuEnDebt } from '../session/selectors';
+import {
+  // selectIrregularRuEnSet,
+  // selectCurrentIrregularRuEn,
+  selectIrregularRuEnDebt,
+} from './selectors';
 
 import { SessionActionsTypes } from './types';
 import { sessionActions } from './actions';
 import { nextIrregularRuEn } from './helpers';
 
-function* start(action: ReturnType<typeof sessionActions.start>) {
+function* start() {
   const isIrregularRuEn = yield select(selectIsIrregularRuEn);
   yield put(scoreActions.reset());
 
@@ -58,13 +62,13 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
   }
 }
 
-function* stop(action: ReturnType<typeof sessionActions.stop>) {
+function* stop() {
   const debt: Array<string> = yield select(selectIrregularRuEnDebt);
   yield call(IrregularService.saveDebtRuEn, debt);
   yield put(sessionActions.statusSet(SessionStatus.inactive));
 }
 
-function* irregularRuEnSetReload(action: ReturnType<typeof sessionActions.irregularRuEnSetReload>) {
+function* irregularRuEnSetReload() {
   const sessionSet: IrregularRuEnSet = yield call(IrregularService.loadRuEn);
 
   yield put(scoreActions.totalSet(sessionSet.length));
@@ -73,6 +77,7 @@ function* irregularRuEnSetReload(action: ReturnType<typeof sessionActions.irregu
   yield put(sessionActions.irregularRuEnSetRefresh(sessionSet));
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function* sessionSaga() {
   yield all([
     takeLatest(SessionActionsTypes.START, start),

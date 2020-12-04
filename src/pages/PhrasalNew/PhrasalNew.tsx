@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const PhrasalNew = () => {
+const PhrasalNew: FC = () => {
   return <div>PhrasalNew</div>;
 };
 

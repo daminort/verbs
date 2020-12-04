@@ -6,8 +6,8 @@ import { Modes, Directions } from '../../assets/enums/app';
 import { appActions } from '../../redux/app/actions';
 
 import { Task } from '../../components/Task';
-import { FormField } from '../../components/FormField';
-import { Radio, RadioGroup } from '../../components/Radio';
+// import { FormField } from '../../components/FormField';
+// import { Radio, RadioGroup } from '../../components/Radio';
 
 const IrregularEnRu: FC = () => {
   const dispatch = useDispatch();

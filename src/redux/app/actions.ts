@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { Directions, Modes } from '../../assets/enums/app';
 import { ActionUnion, createAction } from '../commonTypes';
 import { AppActionsTypes } from './types';

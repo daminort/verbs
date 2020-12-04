@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { SessionPhase, SessionStatus } from '../../assets/enums/session';
 import { ActionUnion, createAction } from '../commonTypes';
 import { SessionActionsTypes } from './types';
