@@ -20,10 +20,7 @@ const composeEnhancers = composeWithDevTools({
   traceLimit: 20,
 });
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(...middlewares)),
-);
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)));
 
 sagaMiddleware.run(rootSaga);
 

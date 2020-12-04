@@ -13,12 +13,8 @@ interface Props {
   status?: Status;
 }
 
-const Radio: FC<Props> = (props) => {
-  const {
-    label,
-    name,
-    status = 'normal',
-  } = props;
+const Radio: FC<Props> = props => {
+  const { label, name, status = 'normal' } = props;
 
   const { selected, setSelected } = useContext(RadioContext);
 
@@ -26,9 +22,9 @@ const Radio: FC<Props> = (props) => {
     setSelected(name);
   }, [name, setSelected]);
 
-  const checked = (selected === name);
-  const showSuccess = (status === 'success');
-  const showError = (status === 'error');
+  const checked = selected === name;
+  const showSuccess = status === 'success';
+  const showError = status === 'error';
 
   const labelClass = clsx('label', {
     success: showSuccess,
@@ -38,21 +34,11 @@ const Radio: FC<Props> = (props) => {
   return (
     <Wrapper>
       <label onClick={onClick}>
-        <input
-          type="radio"
-          className="radio"
-          name={name}
-          checked={checked}
-          onChange={() => {}}
-        />
+        <input type="radio" className="radio" name={name} checked={checked} onChange={() => {}} />
         <span className={labelClass}>{label}</span>
       </label>
-      {showSuccess && (
-        <Icon name="check" size="small" color="success" />
-      )}
-      {showError && (
-        <Icon name="close" size="small" color="error" />
-      )}
+      {showSuccess && <Icon name="check" size="small" color="success" />}
+      {showError && <Icon name="close" size="small" color="error" />}
     </Wrapper>
   );
 };

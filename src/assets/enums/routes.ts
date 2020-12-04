@@ -6,4 +6,4 @@ export enum Routes {
   phrasalRuEn = '/phrasal/ru-en',
   phrasalEnRu = '/phrasal/en-ru',
   phrasalNew = '/phrasal/new',
-};
+}

@@ -43,6 +43,5 @@ export const THEME = {
     start: '#484848',
     middle: '#1d1d1d',
     end: '#484848',
-  }
-
+  },
 };

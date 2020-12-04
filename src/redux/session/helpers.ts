@@ -27,6 +27,4 @@ function* nextIrregularRuEn(isError: boolean) {
   yield put(sessionActions.irregularRuEnSetRefresh(nextSet));
 }
 
-export {
-  nextIrregularRuEn,
-};
+export { nextIrregularRuEn };

@@ -1,12 +1,7 @@
 import React from 'react';
 
 const PhrasalNew = () => {
-
-  return (
-    <div>
-      PhrasalNew
-    </div>
-  );
+  return <div>PhrasalNew</div>;
 };
 
 export default PhrasalNew;

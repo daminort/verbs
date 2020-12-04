@@ -28,12 +28,15 @@ const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
     tabIndex,
   } = props;
 
-  const onChangeValue = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value)
-  }, [onChange]);
+  const onChangeValue = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.value);
+    },
+    [onChange]
+  );
 
-  const showSuccess = (status === 'success');
-  const showError = (status === 'error');
+  const showSuccess = status === 'success';
+  const showError = status === 'error';
   const showMessage = showError && !!message;
 
   const inputClass = clsx('input', {
@@ -52,15 +55,9 @@ const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
         className={inputClass}
         tabIndex={tabIndex}
       />
-      {showSuccess && (
-        <Icon name="check" size="small" color="success" />
-      )}
-      {showError && (
-        <Icon name="close" size="small" color="error" />
-      )}
-      {showMessage && (
-        <span className="message">{message}</span>
-      )}
+      {showSuccess && <Icon name="check" size="small" color="success" />}
+      {showError && <Icon name="close" size="small" color="error" />}
+      {showMessage && <span className="message">{message}</span>}
     </Wrapper>
   );
 });

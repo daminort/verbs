@@ -13,9 +13,6 @@ export const selectDirection = createSelector([direction], direction => directio
 
 export const selectLoading = createSelector([loading], loading => loading);
 
-export const selectIsIrregularRuEn = createSelector(
-  [selectMode, selectDirection],
-  (mode, direction) => {
-    return mode === Modes.irregular && direction === Directions.ruEn;
-  }
-);
+export const selectIsIrregularRuEn = createSelector([selectMode, selectDirection], (mode, direction) => {
+  return mode === Modes.irregular && direction === Directions.ruEn;
+});

@@ -5,4 +5,4 @@ export enum StorageKeys {
   phrasalDebt = 'phrasalDebt',
   phrasalExcludes = 'phrasalExcludes',
   phrasalUserSet = 'phrasalUserSet',
-};
+}

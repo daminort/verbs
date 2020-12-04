@@ -9,20 +9,10 @@ interface Props extends PropsWithChildren<any> {
 }
 
 const Button = forwardRef((props: Props, ref: Ref<HTMLButtonElement>) => {
-  const {
-    onClick,
-    children,
-    tabIndex,
-    disabled = false,
-  } = props;
+  const { onClick, children, tabIndex, disabled = false } = props;
 
   return (
-    <StyledBtn
-      ref={ref}
-      tabIndex={tabIndex}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <StyledBtn ref={ref} tabIndex={tabIndex} disabled={disabled} onClick={onClick}>
       {children}
     </StyledBtn>
   );

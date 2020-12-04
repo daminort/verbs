@@ -8,11 +8,7 @@ import { scoreActions } from '../score/actions';
 import { selectCorrect, selectWrong } from '../score/selectors';
 
 import { selectIsIrregularRuEn } from '../app/selectors';
-import {
-  selectIrregularRuEnSet,
-  selectCurrentIrregularRuEn,
-  selectIrregularRuEnDebt,
-} from '../session/selectors';
+import { selectIrregularRuEnSet, selectCurrentIrregularRuEn, selectIrregularRuEnDebt } from '../session/selectors';
 
 import { SessionActionsTypes } from './types';
 import { sessionActions } from './actions';
@@ -42,7 +38,6 @@ function* next(action: ReturnType<typeof sessionActions.next>) {
   if (isError) {
     const wrong = yield select(selectWrong);
     yield put(scoreActions.wrongSet(wrong + 1));
-
   } else {
     const correct = yield select(selectCorrect);
     yield put(scoreActions.correctSet(correct + 1));
@@ -70,11 +65,10 @@ function* stop(action: ReturnType<typeof sessionActions.stop>) {
 }
 
 function* irregularRuEnSetReload(action: ReturnType<typeof sessionActions.irregularRuEnSetReload>) {
-
   const sessionSet: IrregularRuEnSet = yield call(IrregularService.loadRuEn);
 
   yield put(scoreActions.totalSet(sessionSet.length));
-  
+
   yield put(sessionActions.irregularRuEnDebtRefresh([]));
   yield put(sessionActions.irregularRuEnSetRefresh(sessionSet));
 }

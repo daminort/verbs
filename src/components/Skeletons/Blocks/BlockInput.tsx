@@ -3,6 +3,6 @@ import { basicStyle } from './style';
 
 export const BlockInput = styled.div`
   ${basicStyle};
-  
+
   height: 2rem;
 `;

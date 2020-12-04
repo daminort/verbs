@@ -7,7 +7,7 @@ type EmptyPayload = {};
 
 type FunctionType = (...args: any[]) => any;
 type ActionCreatorMapObject = {
-  [actionCreator: string]: FunctionType,
+  [actionCreator: string]: FunctionType;
 };
 
 export type ActionUnion<A extends ActionCreatorMapObject> = ReturnType<A[keyof A]>;

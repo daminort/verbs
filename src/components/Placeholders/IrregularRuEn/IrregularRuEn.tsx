@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Task } from '../../Task';
 import { FormField } from '../../FormField';
-import { Input  } from '../../Input';
+import { Input } from '../../Input';
 import { Wrapper } from './IrregularRuEn.style';
 
 const inputProps = {
@@ -12,13 +12,9 @@ const inputProps = {
 };
 
 const IrregularRuEn: FC = () => {
-
   return (
     <Wrapper>
-      <Task
-        disabled
-        value="waiting for start..."
-      />
+      <Task disabled value="waiting for start..." />
       <FormField label="Infinitive">
         <Input placeholder="infinitive" {...inputProps} />
       </FormField>

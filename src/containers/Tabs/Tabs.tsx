@@ -10,18 +10,23 @@ import { DirectionSwitcher } from '../../components/DirectionSwitcher';
 import { Wrapper } from './Tabs.style';
 
 const Tabs = () => {
-
   const dispatch = useDispatch();
   const mode: Modes = useSelector(selectMode);
   const direction: Directions = useSelector(selectDirection);
 
-  const onChangeMode = useCallback((mode: Modes) => () => {
-    dispatch(appActions.modeChange(mode));
-  }, [dispatch]);
+  const onChangeMode = useCallback(
+    (mode: Modes) => () => {
+      dispatch(appActions.modeChange(mode));
+    },
+    [dispatch]
+  );
 
-  const onChangeDirection = useCallback((direction: Directions) => {
-    dispatch(appActions.directionChange(direction));
-  }, [dispatch]);
+  const onChangeDirection = useCallback(
+    (direction: Directions) => {
+      dispatch(appActions.directionChange(direction));
+    },
+    [dispatch]
+  );
 
   const irregularClass = clsx('tab', {
     active: mode === Modes.irregular,
@@ -33,14 +38,15 @@ const Tabs = () => {
   return (
     <Wrapper>
       <div className="left">
-        <div className={irregularClass} onClick={onChangeMode(Modes.irregular)}>Irregular</div>
-        <div className={phrasalClass} onClick={onChangeMode(Modes.phrasal)}>Phrasal</div>
+        <div className={irregularClass} onClick={onChangeMode(Modes.irregular)}>
+          Irregular
+        </div>
+        <div className={phrasalClass} onClick={onChangeMode(Modes.phrasal)}>
+          Phrasal
+        </div>
       </div>
       <div className="right">
-        <DirectionSwitcher
-          direction={direction}
-          onChange={onChangeDirection}
-        />
+        <DirectionSwitcher direction={direction} onChange={onChangeDirection} />
       </div>
     </Wrapper>
   );

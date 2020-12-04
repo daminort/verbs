@@ -1,12 +1,7 @@
 import React from 'react';
 
 const IrregularNew = () => {
-
-  return (
-    <div>
-      IrregularNew
-    </div>
-  );
+  return <div>IrregularNew</div>;
 };
 
 export default IrregularNew;

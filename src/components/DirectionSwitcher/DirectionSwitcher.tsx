@@ -12,10 +12,9 @@ interface Props {
 const options = {
   [Directions.ruEn]: { from: 'Ru', to: 'En', next: Directions.enRu },
   [Directions.enRu]: { from: 'En', to: 'Ru', next: Directions.ruEn },
-}
+};
 
 const DirectionSwitcher: FC<Props> = ({ direction, onChange }) => {
-
   const { from, to, next } = options[direction];
 
   const onClick = useCallback(() => {

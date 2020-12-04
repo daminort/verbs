@@ -11,11 +11,11 @@ export const Wrapper = styled.div`
   padding: 0.5rem;
   background: ${bg.accent};
   color: ${text.accent};
-  
+
   .icon {
     flex-grow: 1;
   }
-  
+
   .timer {
     flex-grow: 22;
     display: flex;

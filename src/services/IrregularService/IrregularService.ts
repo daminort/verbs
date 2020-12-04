@@ -6,9 +6,7 @@ import { StorageUtils } from '../../utils/StorageUtils';
 import { IrregularUtils } from '../../utils/IrregularUtils';
 
 class IrregularService {
-
   async loadRuEn(): Promise<IrregularRuEnSet> {
-
     const debt: Array<string> = StorageUtils.read<Array<string>>(StorageKeys.irregularDebt, []);
     const excludes: Array<string> = StorageUtils.read<Array<string>>(StorageKeys.irregularExcludes, []);
     const userSet: IrregularVerbs = StorageUtils.read<IrregularVerbs>(StorageKeys.irregularExcludes, []);

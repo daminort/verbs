@@ -13,13 +13,13 @@ export const StyledBtn = styled.button`
   background-color: ${bg.secondaryAccent};
   color: ${text.accent};
   cursor: pointer;
-  
+
   &:disabled {
     background-color: ${bg.secondary};
     color: ${text.main};
     pointer-events: none;
   }
-  
+
   &:focus {
     outline: 0;
     border: 1px solid ${border.focus};

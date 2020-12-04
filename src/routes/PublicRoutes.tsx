@@ -12,7 +12,6 @@ const PhrasalEnRu = lazy(() => import('../pages/PhrasalEnRu'));
 const PhrasalNew = lazy(() => import('../pages/PhrasalNew'));
 
 const PublicRoutes = () => {
-
   return (
     <Switch>
       <Suspense fallback={<div />}>
