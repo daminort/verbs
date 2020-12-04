@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: PR-to-Main
+name: Pull-request to Main
 
 on:
   pull_request:
@@ -15,5 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run ESLint
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Linter
         run: npm run lint
