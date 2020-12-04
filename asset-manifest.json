@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.js": "/verbs/static/js/main.6d58068b.chunk.js",
+    "main.js.map": "/verbs/static/js/main.6d58068b.chunk.js.map",
+    "runtime-main.js": "/verbs/static/js/runtime-main.ded44d30.js",
+    "runtime-main.js.map": "/verbs/static/js/runtime-main.ded44d30.js.map",
+    "static/js/2.44770388.chunk.js": "/verbs/static/js/2.44770388.chunk.js",
+    "static/js/2.44770388.chunk.js.map": "/verbs/static/js/2.44770388.chunk.js.map",
+    "static/js/3.7cb99ca7.chunk.js": "/verbs/static/js/3.7cb99ca7.chunk.js",
+    "static/js/3.7cb99ca7.chunk.js.map": "/verbs/static/js/3.7cb99ca7.chunk.js.map",
+    "static/js/4.865ea233.chunk.js": "/verbs/static/js/4.865ea233.chunk.js",
+    "static/js/4.865ea233.chunk.js.map": "/verbs/static/js/4.865ea233.chunk.js.map",
+    "static/js/5.a3379697.chunk.js": "/verbs/static/js/5.a3379697.chunk.js",
+    "static/js/5.a3379697.chunk.js.map": "/verbs/static/js/5.a3379697.chunk.js.map",
+    "static/js/6.4b1a153f.chunk.js": "/verbs/static/js/6.4b1a153f.chunk.js",
+    "static/js/6.4b1a153f.chunk.js.map": "/verbs/static/js/6.4b1a153f.chunk.js.map",
+    "static/js/7.5a2280cd.chunk.js": "/verbs/static/js/7.5a2280cd.chunk.js",
+    "static/js/7.5a2280cd.chunk.js.map": "/verbs/static/js/7.5a2280cd.chunk.js.map",
+    "static/js/8.61676d80.chunk.js": "/verbs/static/js/8.61676d80.chunk.js",
+    "static/js/8.61676d80.chunk.js.map": "/verbs/static/js/8.61676d80.chunk.js.map",
+    "static/js/9.d8edbf4f.chunk.js": "/verbs/static/js/9.d8edbf4f.chunk.js",
+    "static/js/9.d8edbf4f.chunk.js.map": "/verbs/static/js/9.d8edbf4f.chunk.js.map",
+    "index.html": "/verbs/index.html",
+    "static/js/2.44770388.chunk.js.LICENSE.txt": "/verbs/static/js/2.44770388.chunk.js.LICENSE.txt",
+    "static/media/check.a6151888.svg": "/verbs/static/media/check.a6151888.svg",
+    "static/media/chevron-right.d45fd2f4.svg": "/verbs/static/media/chevron-right.d45fd2f4.svg",
+    "static/media/file-minus.24ccbfaf.svg": "/verbs/static/media/file-minus.24ccbfaf.svg",
+    "static/media/file-plus.cc2671b5.svg": "/verbs/static/media/file-plus.cc2671b5.svg",
+    "static/media/menu.644fa295.svg": "/verbs/static/media/menu.644fa295.svg",
+    "static/media/play-circle.dcf880c0.svg": "/verbs/static/media/play-circle.dcf880c0.svg",
+    "static/media/stop-circle.071bf69e.svg": "/verbs/static/media/stop-circle.071bf69e.svg",
+    "static/media/x.6c9a4ba7.svg": "/verbs/static/media/x.6c9a4ba7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ded44d30.js",
+    "static/js/2.44770388.chunk.js",
+    "static/js/main.6d58068b.chunk.js"
+  ]
+}
