@@ -4,11 +4,15 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
+import { config } from '../config';
 import reducers from './reducers';
 import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
-const history = createBrowserHistory();
+const history = createBrowserHistory({
+  basename: config.publicURL,
+});
+
 const routeMiddleware = routerMiddleware(history);
 const middlewares = [sagaMiddleware, routeMiddleware];
 
