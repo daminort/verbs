@@ -2,7 +2,11 @@
   "name": "verbs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://daminort.github.io/verbs",
+  "homepage": "/verbs/",
+  "repository": {
+    "type": "git",
+    "url": "http://daminort.github.io/verbs"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
