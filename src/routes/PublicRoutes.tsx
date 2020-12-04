@@ -12,7 +12,6 @@ const PhrasalEnRu = lazy(() => import('../pages/PhrasalEnRu'));
 const PhrasalNew = lazy(() => import('../pages/PhrasalNew'));
 
 const PublicRoutes: FC = () => {
-
   // Due to GitHub Pages serves only static files, it can't response with index.html for every request
   // so, we have to use this workaround.
   // See more details in /public/404.html
