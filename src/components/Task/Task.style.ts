@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   padding: 1rem;
   font-size: 1rem;
   color: ${text.accent};
-  
+
   &.disabled {
     color: ${text.main};
   }

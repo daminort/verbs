@@ -12,15 +12,15 @@ export const Wrapper = styled.div`
   color: ${text.main};
   font-size: ${size.tiny};
   font-weight: 500;
-  
+
   .left {
     display: flex;
     align-items: center;
-    
+
     .tab {
       padding: 0.5rem 1rem;
       cursor: pointer;
-      
+
       &.active {
         color: ${text.accent};
         font-weight: 500;

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { ActionUnion, createAction } from '../commonTypes';
 import { ScoreActionsTypes } from './types';
 

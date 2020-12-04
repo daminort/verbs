@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  
+
   .icon {
     margin: 0 0.25rem;
   }

@@ -1,7 +1,6 @@
-import { format, addSeconds } from 'date-fns'
+import { format, addSeconds } from 'date-fns';
 
 class CommonUtils {
-
   static shuffle<T>(originArray: Array<T>): Array<T> {
     const resArray = [...originArray];
     let i, j, x;
@@ -19,7 +18,7 @@ class CommonUtils {
     const time = addSeconds(base, seconds);
     return format(time, 'HH:mm:ss');
   }
-};
+}
 
 export default CommonUtils;
 export { CommonUtils };

@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { put, select } from 'redux-saga/effects';
 
 import { SessionPhase } from '../../assets/enums/session';
-import { selectCurrentIrregularRuEn, selectIrregularRuEnDebt, selectIrregularRuEnSet } from '../session/selectors';
+import { selectCurrentIrregularRuEn, selectIrregularRuEnDebt, selectIrregularRuEnSet } from './selectors';
 
 import { sessionActions } from './actions';
 
@@ -27,6 +29,4 @@ function* nextIrregularRuEn(isError: boolean) {
   yield put(sessionActions.irregularRuEnSetRefresh(nextSet));
 }
 
-export {
-  nextIrregularRuEn,
-};
+export { nextIrregularRuEn };

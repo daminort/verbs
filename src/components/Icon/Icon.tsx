@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Icon: FC<Props> = ({ name, size, color, onClick }) => {
-
   const src = icons[name];
   const cls = `icon ${size} ${color}`;
 

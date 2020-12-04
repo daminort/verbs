@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const IrregularNew = () => {
-
-  return (
-    <div>
-      IrregularNew
-    </div>
-  );
+const IrregularNew: FC = () => {
+  return <div>IrregularNew</div>;
 };
 
 export default IrregularNew;

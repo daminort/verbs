@@ -1,5 +1,4 @@
 class StorageUtils {
-
   static read<T>(key: string, defaultValue: T): T {
     const rawValue = localStorage.getItem(key) || '';
     try {
@@ -18,7 +17,7 @@ class StorageUtils {
   static clear(key: string): void {
     localStorage.removeItem(key);
   }
-};
+}
 
 export default StorageUtils;
 export { StorageUtils };

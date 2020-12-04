@@ -7,13 +7,13 @@ const verb = (i: string, ps: string, pp: string, t: string): IrregularVerb => {
     pastSimple: ps,
     pastParticipant: pp,
     translation: t,
-  }
+  };
 };
 
 export const irregularVerbs: IrregularVerbs = [
   // A
   verb('arise', 'arose', 'arisen', 'возникать, появляться'),
-  verb( 'awake', 'awoke', 'awoken', 'будить, просыпаться'),
+  verb('awake', 'awoke', 'awoken', 'будить, просыпаться'),
   // B
   verb('backslide', 'backslid', 'backslid', 'отступаться от веры'),
   verb('be', 'was/were', 'been', 'быть'),

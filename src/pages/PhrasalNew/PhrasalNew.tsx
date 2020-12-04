@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const PhrasalNew = () => {
-
-  return (
-    <div>
-      PhrasalNew
-    </div>
-  );
+const PhrasalNew: FC = () => {
+  return <div>PhrasalNew</div>;
 };
 
 export default PhrasalNew;

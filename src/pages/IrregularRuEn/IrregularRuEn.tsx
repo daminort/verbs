@@ -12,10 +12,7 @@ import { IrregularUtils } from '../../utils/IrregularUtils';
 import { appActions } from '../../redux/app/actions';
 import { sessionActions } from '../../redux/session/actions';
 import { selectLoading } from '../../redux/app/selectors';
-import {
-  selectCurrentIrregularRuEn,
-  selectIsSessionActive,
-  selectSessionPhase,} from '../../redux/session/selectors';
+import { selectCurrentIrregularRuEn, selectIsSessionActive, selectSessionPhase } from '../../redux/session/selectors';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
@@ -41,7 +38,6 @@ const defaultErrors: HashMap = {
 };
 
 const IrregularRuEn: FC = () => {
-
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const isSessionActive = useSelector(selectIsSessionActive);
@@ -71,7 +67,6 @@ const IrregularRuEn: FC = () => {
     setPastParticipant('');
     setStatus(defaultStatus);
     setErrors(defaultErrors);
-
   }, [currentItem, setInfinitive, setPastSimple, setPastParticipant]);
 
   useEffect(() => {
@@ -90,37 +85,34 @@ const IrregularRuEn: FC = () => {
     setStatus(status);
     setErrors(errors);
     dispatch(sessionActions.phaseSet(SessionPhase.results));
-
   }, [dispatch, currentItem, infinitive, pastSimple, pastParticipant, setStatus, setErrors]);
 
   const onClickNext = useCallback(() => {
     const isError = Object.values(status).some(status => status === 'error');
     dispatch(sessionActions.next(isError));
-  },[dispatch, status]);
+  }, [dispatch, status]);
 
   if (loading) {
     return <Skeleton />;
-  };
+  }
 
   if (!isSessionActive) {
     return (
       <>
         <Placeholder />
-        {phase === SessionPhase.finish && (
-          <Score />
-        )}
+        {phase === SessionPhase.finish && <Score />}
       </>
     );
-  };
+  }
 
-  const isCheckDisabled = (phase === SessionPhase.validation || phase === SessionPhase.results);
-  const isNextDisabled = (phase === SessionPhase.waiting || phase === SessionPhase.validation);
+  const isCheckDisabled = phase === SessionPhase.validation || phase === SessionPhase.results;
+  const isNextDisabled = phase === SessionPhase.waiting || phase === SessionPhase.validation;
 
   const placeholders = {
     infinitive: errors.infinitive ? '' : 'infinitive',
     pastSimple: errors.pastSimple ? '' : 'past simple',
     pastParticipant: errors.pastParticipant ? '' : 'past participant',
-  }
+  };
 
   return (
     <>
@@ -160,19 +152,10 @@ const IrregularRuEn: FC = () => {
         />
       </FormField>
       <ButtonsBlock>
-        <Button
-          tabIndex={4}
-          disabled={isCheckDisabled}
-          onClick={onClickCheck}
-        >
+        <Button tabIndex={4} disabled={isCheckDisabled} onClick={onClickCheck}>
           Check
         </Button>
-        <Button
-          tabIndex={5}
-          ref={nextRef}
-          disabled={isNextDisabled}
-          onClick={onClickNext}
-        >
+        <Button tabIndex={5} ref={nextRef} disabled={isNextDisabled} onClick={onClickNext}>
           Next
         </Button>
       </ButtonsBlock>

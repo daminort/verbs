@@ -5,25 +5,18 @@ import { Status } from '../../assets/types/input';
 
 import { irregularVerbs } from '../../verbs/irregular';
 import { CommonUtils } from '../CommonUtils';
-import {
-  DividedRuEnSet,
-  ValuesRuEn,
-  ValidationResult,
-  ValidationRuEn,
-} from './types';
+import { DividedRuEnSet, ValuesRuEn, ValidationResult, ValidationRuEn } from './types';
 
 class IrregularUtils {
-
   static createDividedRuEnSet(
     debt: string[] = [],
     excludes: string[] = [],
-    userSet: IrregularVerbs = [],
+    userSet: IrregularVerbs = []
   ): DividedRuEnSet {
-
     const debtVerbs: IrregularRuEnSet = [];
     const sessionVerbs: IrregularRuEnSet = [];
 
-    for (let verb of irregularVerbs) {
+    for (const verb of irregularVerbs) {
       const isExcluded = excludes.includes(verb.key);
       if (isExcluded) {
         continue;
@@ -32,13 +25,12 @@ class IrregularUtils {
       const isDebt = debt.includes(verb.key);
       if (isDebt) {
         debtVerbs.push(verb);
-
       } else {
         sessionVerbs.push(verb);
       }
     }
 
-    for (let verb of userSet) {
+    for (const verb of userSet) {
       const isExcluded = excludes.includes(verb.key);
       if (isExcluded) {
         continue;
@@ -47,7 +39,6 @@ class IrregularUtils {
       const isDebt = debt.includes(verb.key);
       if (isDebt) {
         debtVerbs.push(verb);
-
       } else {
         sessionVerbs.push(verb);
       }
@@ -62,9 +53,8 @@ class IrregularUtils {
   static createRuEnSessionSet(
     debt: string[] = [],
     excludes: string[] = [],
-    userSet: IrregularVerbs = [],
+    userSet: IrregularVerbs = []
   ): IrregularRuEnSet {
-
     const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedRuEnSet(debt, excludes, userSet);
     const result: IrregularRuEnSet = [...debtVerbs, ...sessionVerbs];
 
@@ -80,11 +70,10 @@ class IrregularUtils {
     return {
       status,
       error: lowOrigin,
-    }
+    };
   }
 
   static validateRuEn(origin: IrregularVerb, values: ValuesRuEn): ValidationRuEn {
-
     const status: GenericMap<Status> = {};
     const errors: HashMap = {};
 
@@ -103,11 +92,11 @@ class IrregularUtils {
     const result: ValidationRuEn = {
       status,
       errors,
-    }
+    };
 
     return result;
   }
-};
+}
 
 export default IrregularUtils;
 export { IrregularUtils };

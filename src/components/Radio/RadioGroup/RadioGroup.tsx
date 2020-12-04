@@ -8,10 +8,13 @@ interface Props {
 const RadioGroup: FC<Props> = ({ onSelect, children }) => {
   const [selectedName, setSelectedName] = useState('');
 
-  const onSelectValue = useCallback((name: string) => {
-    setSelectedName(name);
-    onSelect(name);
-  }, [setSelectedName, onSelect]);
+  const onSelectValue = useCallback(
+    (name: string) => {
+      setSelectedName(name);
+      onSelect(name);
+    },
+    [setSelectedName, onSelect]
+  );
 
   const contextValue: RadioContextType = {
     selected: selectedName,
@@ -20,9 +23,7 @@ const RadioGroup: FC<Props> = ({ onSelect, children }) => {
 
   return (
     <div>
-      <RadioContext.Provider value={contextValue}>
-        {children}
-      </RadioContext.Provider>
+      <RadioContext.Provider value={contextValue}>{children}</RadioContext.Provider>
     </div>
   );
 };

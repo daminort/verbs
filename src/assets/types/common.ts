@@ -1,11 +1,11 @@
 export type CommonObject = {
-  [key: string]: any,
+  [key: string]: never;
 };
 
 export type HashMap = {
-  [key: string]: string,
+  [key: string]: string;
 };
 
 export type GenericMap<T> = {
-  [key: string]: T,
+  [key: string]: T;
 };

@@ -1,18 +1,11 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import {
-  selectTotal,
-  selectPassed,
-  selectCorrect,
-  selectWrong,
-  selectProgress,
-} from '../../redux/score/selectors';
+import { selectTotal, selectPassed, selectCorrect, selectWrong, selectProgress } from '../../redux/score/selectors';
 
 import { Wrapper } from './Score.style';
 
 const Score: FC = () => {
-
   const total = useSelector(selectTotal);
   const passed = useSelector(selectPassed);
   const correct = useSelector(selectCorrect);
@@ -24,7 +17,9 @@ const Score: FC = () => {
       <h3>Score</h3>
       <div className="row">
         <span className="label">Passed</span>
-        <span className="value">{passed} / {total}</span>
+        <span className="value">
+          {passed} / {total}
+        </span>
       </div>
       <div className="row">
         <span className="label">Correct</span>

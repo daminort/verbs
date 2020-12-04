@@ -10,13 +10,13 @@ export const Wrapper = styled.div`
   position: relative;
   width: 100%;
   padding: 0.2rem 0;
-  
+
   .radio {
     position: absolute;
     left: -9999px;
     opacity: 0;
   }
-  
+
   .label {
     position: relative;
     padding-left: 2rem;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
     line-height: 1.5rem;
     display: inline-block;
     color: ${text.main};
-    
+
     &:before {
       content: '';
       position: absolute;
@@ -36,7 +36,7 @@ export const Wrapper = styled.div`
       border-radius: 100%;
       background: transparent;
     }
-    
+
     &:after {
       content: '';
       width: 10px;
@@ -49,22 +49,22 @@ export const Wrapper = styled.div`
       -webkit-transition: all 0.2s ease;
       transition: all 0.2s ease;
     }
-    
+
     &.success {
       font-weight: 500;
       color: ${text.accent};
     }
-    
+
     &.error {
       text-decoration: line-through;
     }
   }
-  
+
   .radio:not(:checked) + .label:after {
     opacity: 0;
     transform: scale(0);
   }
-  
+
   .radio:checked + .label:after {
     opacity: 1;
     transform: scale(1);

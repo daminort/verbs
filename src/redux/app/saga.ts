@@ -6,7 +6,7 @@ import { Modes, Directions } from '../../assets/enums/app';
 import { sessionActions } from '../session/actions';
 import { selectIsSessionActive } from '../session/selectors';
 
-import { AppActionsTypes } from './types'
+import { AppActionsTypes } from './types';
 import { appActions } from './actions';
 import { selectMode, selectDirection } from './selectors';
 
@@ -28,7 +28,7 @@ function* directionChange(action: ReturnType<typeof appActions.directionChange>)
 
 function* pageReload(action: ReturnType<typeof appActions.pageReload>) {
   const { mode, direction } = action.payload;
-  const isSessionActive: Boolean = yield select(selectIsSessionActive);
+  const isSessionActive: boolean = yield select(selectIsSessionActive);
 
   if (isSessionActive) {
     yield put(sessionActions.stop());
@@ -38,6 +38,7 @@ function* pageReload(action: ReturnType<typeof appActions.pageReload>) {
   yield put(appActions.directionSet(direction));
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function* appSaga() {
   yield all([
     takeLatest(AppActionsTypes.MODE_CHANGE, modeChange),

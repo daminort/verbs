@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-types */
+
 export interface Action<T extends string, P> {
   type: T;
   payload: P;
@@ -7,7 +11,7 @@ type EmptyPayload = {};
 
 type FunctionType = (...args: any[]) => any;
 type ActionCreatorMapObject = {
-  [actionCreator: string]: FunctionType,
+  [actionCreator: string]: FunctionType;
 };
 
 export type ActionUnion<A extends ActionCreatorMapObject> = ReturnType<A[keyof A]>;

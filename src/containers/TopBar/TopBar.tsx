@@ -10,7 +10,6 @@ import { Icon } from '../../components/Icon';
 import { Wrapper } from './TopBar.style';
 
 const TopBar: FC = () => {
-
   const dispatch = useDispatch();
   const isSessionActive = useSelector(selectIsSessionActive);
   const [time, setTime] = useState(0);
@@ -38,12 +37,7 @@ const TopBar: FC = () => {
     <Wrapper>
       <Icon name="menu" size="normal" color="accent" />
       <span className="timer">{timerValue}</span>
-      <Icon
-        size="normal"
-        color="accent"
-        name={timerIcon}
-        onClick={onClickTimer}
-      />
+      <Icon size="normal" color="accent" name={timerIcon} onClick={onClickTimer} />
     </Wrapper>
   );
 };

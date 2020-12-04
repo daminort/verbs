@@ -8,16 +8,11 @@ interface Props {
 }
 
 const Task: FC<Props> = ({ value, disabled = false }) => {
-
   const wrapperClass = clsx({
     disabled,
   });
 
-  return (
-    <Wrapper className={wrapperClass}>
-      {value}
-    </Wrapper>
-  );
+  return <Wrapper className={wrapperClass}>{value}</Wrapper>;
 };
 
 export default Task;

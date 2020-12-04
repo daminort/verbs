@@ -13,7 +13,7 @@ export const basicStyle = css`
   background: linear-gradient(90deg, ${start}, ${middle}, ${end});
   background-size: 400% 100%;
   animation: loading 1.5s ease infinite;
-  
+
   @keyframes loading {
     0% {
       background-position: 100% 50%;
