@@ -34,6 +34,10 @@ const PublicRoutes: FC = () => {
         <Route exact path={Routes.phrasalRuEn} component={PhrasalRuEn} />
         <Route exact path={Routes.phrasalEnRu} component={PhrasalEnRu} />
         <Route exact path={Routes.phrasalNew} component={PhrasalNew} />
+
+        <Route path="*">
+          <Redirect to={Routes.irregularRuEn} />
+        </Route>
       </Suspense>
     </Switch>
   );
