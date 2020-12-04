@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/verbs/static/js/main.31550698.chunk.js",
-    "main.js.map": "/verbs/static/js/main.31550698.chunk.js.map",
+    "main.js": "/verbs/static/js/main.8a2765c1.chunk.js",
+    "main.js.map": "/verbs/static/js/main.8a2765c1.chunk.js.map",
     "runtime-main.js": "/verbs/static/js/runtime-main.40f04c01.js",
     "runtime-main.js.map": "/verbs/static/js/runtime-main.40f04c01.js.map",
     "static/js/2.4693a0f8.chunk.js": "/verbs/static/js/2.4693a0f8.chunk.js",
@@ -34,6 +34,6 @@
   "entrypoints": [
     "static/js/runtime-main.40f04c01.js",
     "static/js/2.4693a0f8.chunk.js",
-    "static/js/main.31550698.chunk.js"
+    "static/js/main.8a2765c1.chunk.js"
   ]
 }
