@@ -44,4 +44,7 @@ export const THEME = {
     middle: '#1d1d1d',
     end: '#484848',
   },
+  media: {
+    notMobile: 'min-width: 460px',
+  },
 };

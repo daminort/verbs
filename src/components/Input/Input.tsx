@@ -1,7 +1,8 @@
-import React, { useCallback, ChangeEvent, forwardRef, Ref } from 'react';
+import React, { useCallback, ChangeEvent, KeyboardEvent, forwardRef, Ref } from 'react';
 import clsx from 'clsx';
 
 import { Status } from '../../assets/types/input';
+import { OnEnterCallback } from '../../assets/types/events';
 import { Icon } from '../Icon';
 import { Wrapper } from './Input.style';
 
@@ -14,6 +15,7 @@ interface Props {
   message?: string;
   disabled?: boolean;
   tabIndex?: number;
+  onEnter?: OnEnterCallback;
 }
 
 const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
@@ -25,6 +27,7 @@ const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
     status = 'normal',
     message = '',
     disabled = false,
+    onEnter = () => {},
     tabIndex,
   } = props;
 
@@ -33,6 +36,18 @@ const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
       onChange(event.target.value);
     },
     [onChange]
+  );
+
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        onEnter({
+          name,
+          value,
+        });
+      }
+    },
+    [name, value, onEnter]
   );
 
   const showSuccess = status === 'success';
@@ -52,6 +67,7 @@ const Input = forwardRef((props: Props, ref: Ref<HTMLInputElement>) => {
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChangeValue}
+        onKeyDown={onKeyDown}
         className={inputClass}
         tabIndex={tabIndex}
       />
