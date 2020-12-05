@@ -4,6 +4,8 @@ import { Task } from '../../Task';
 import { FormField } from '../../FormField';
 import { Input } from '../../Input';
 import { Wrapper } from './IrregularRuEn.style';
+import { Button } from '../../Button/Button';
+import { ButtonsBlock } from '../../ButtonsBlock/ButtonsBlock';
 
 const inputProps = {
   disabled: true,
@@ -24,6 +26,10 @@ const IrregularRuEn: FC = () => {
       <FormField label="Past Participle">
         <Input placeholder="past participle" {...inputProps} />
       </FormField>
+      <ButtonsBlock>
+        <Button disabled>Check</Button>
+        <Button disabled>Next</Button>
+      </ButtonsBlock>
     </Wrapper>
   );
 };

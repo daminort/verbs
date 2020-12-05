@@ -24,6 +24,7 @@ import { IrregularRuEn as Skeleton } from '../../components/Skeletons';
 import { IrregularRuEn as Placeholder } from '../../components/Placeholders';
 
 import { Score } from '../../containers/Score';
+import { OnEnterCallbackParams } from '../../assets/types/events';
 
 const defaultStatus: GenericMap<Status> = {
   infinitive: 'normal',
@@ -51,6 +52,9 @@ const IrregularRuEn: FC = () => {
   const [errors, setErrors] = useState(defaultErrors);
 
   const infinitiveRef = useRef<HTMLInputElement>(null);
+  const pastSimpleRef = useRef<HTMLInputElement>(null);
+  const pastParticipleRef = useRef<HTMLInputElement>(null);
+  const checkRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
   useMount(() => {
@@ -92,6 +96,19 @@ const IrregularRuEn: FC = () => {
     dispatch(sessionActions.next(isError));
   }, [dispatch, status]);
 
+  const onEnter = useCallback((params: OnEnterCallbackParams) => {
+    const { name } = params;
+    if (name === 'infinitive' && pastSimpleRef.current) {
+      pastSimpleRef.current.focus();
+    }
+    if (name === 'pastSimple' && pastParticipleRef.current) {
+      pastParticipleRef.current.focus();
+    }
+    if (name === 'pastParticipant' && checkRef.current) {
+      checkRef.current.focus();
+    }
+  }, []);
+
   if (loading) {
     return <Skeleton />;
   }
@@ -127,32 +144,37 @@ const IrregularRuEn: FC = () => {
           status={status.infinitive}
           message={errors.infinitive}
           onChange={setInfinitive}
+          onEnter={onEnter}
         />
       </FormField>
       <FormField label="Past Simple">
         <Input
           name="pastSimple"
           tabIndex={2}
+          ref={pastSimpleRef}
           placeholder={placeholders.pastSimple}
           value={pastSimple}
           status={status.pastSimple}
           message={errors.pastSimple}
           onChange={setPastSimple}
+          onEnter={onEnter}
         />
       </FormField>
       <FormField label="Past Participle">
         <Input
           name="pastParticipant"
           tabIndex={3}
+          ref={pastParticipleRef}
           placeholder={placeholders.pastParticipant}
           value={pastParticipant}
           status={status.pastParticipant}
           message={errors.pastParticipant}
           onChange={setPastParticipant}
+          onEnter={onEnter}
         />
       </FormField>
       <ButtonsBlock>
-        <Button tabIndex={4} disabled={isCheckDisabled} onClick={onClickCheck}>
+        <Button tabIndex={4} ref={checkRef} disabled={isCheckDisabled} onClick={onClickCheck}>
           Check
         </Button>
         <Button tabIndex={5} ref={nextRef} disabled={isNextDisabled} onClick={onClickNext}>

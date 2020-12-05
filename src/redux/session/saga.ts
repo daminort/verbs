@@ -66,6 +66,7 @@ function* stop() {
   const debt: Array<string> = yield select(selectIrregularRuEnDebt);
   yield call(IrregularService.saveDebtRuEn, debt);
   yield put(sessionActions.statusSet(SessionStatus.inactive));
+  yield put(sessionActions.phaseSet(SessionPhase.finish));
 }
 
 function* irregularRuEnSetReload() {

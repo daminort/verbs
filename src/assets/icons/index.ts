@@ -6,6 +6,7 @@ import menu from './menu.svg';
 import play from './play-circle.svg';
 import right from './chevron-right.svg';
 import stop from './stop-circle.svg';
+import github from './github.svg';
 
 const icons = {
   check,
@@ -16,6 +17,7 @@ const icons = {
   play,
   right,
   stop,
+  github,
 };
 
 export type IconName = keyof typeof icons;
