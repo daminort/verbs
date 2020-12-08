@@ -1,20 +1,21 @@
 import { IrregularVerbs, IrregularVerb } from '../../assets/types/verbs';
-import { IrregularRuEnItem, IrregularRuEnSet } from '../../assets/types/sessionSets';
+import {
+  IrregularRuEnItem,
+  IrregularRuEnSet,
+  IrregularEnRuItem,
+  IrregularEnRuSet,
+} from '../../assets/types/sessionSets';
 import { GenericMap, HashMap } from '../../assets/types/common';
 import { Status } from '../../assets/types/input';
 
-import { irregularVerbs } from '../../verbs/irregular';
+import { irregularVerbs, irregularTranslations } from '../../verbs/irregular';
 import { CommonUtils } from '../CommonUtils';
-import { DividedRuEnSet, ValuesRuEn, ValidationResult, ValidationRuEn } from './types';
+import { DividedSet, ValuesRuEn, ValidationResult, ValidationRuEn } from './types';
 
 class IrregularUtils {
-  static createDividedRuEnSet(
-    debt: string[] = [],
-    excludes: string[] = [],
-    userSet: IrregularVerbs = []
-  ): DividedRuEnSet {
-    const debtVerbs: IrregularRuEnSet = [];
-    const sessionVerbs: IrregularRuEnSet = [];
+  static createDividedSet(debt: string[] = [], excludes: string[] = [], userSet: IrregularVerbs = []): DividedSet {
+    const debtVerbs: IrregularVerbs = [];
+    const sessionVerbs: IrregularVerbs = [];
 
     for (const verb of irregularVerbs) {
       const isExcluded = excludes.includes(verb.key);
@@ -45,9 +46,39 @@ class IrregularUtils {
     }
 
     return {
-      debtVerbs: CommonUtils.shuffle<IrregularRuEnItem>(debtVerbs),
-      sessionVerbs: CommonUtils.shuffle<IrregularRuEnItem>(sessionVerbs),
+      debtVerbs: CommonUtils.shuffle<IrregularVerb>(debtVerbs),
+      sessionVerbs: CommonUtils.shuffle<IrregularVerb>(sessionVerbs),
     };
+  }
+
+  static createEnRuItem(originVerb: IrregularVerb): IrregularEnRuItem {
+    const { key, infinitive, pastSimple, pastParticipant, translation } = originVerb;
+
+    const item: IrregularEnRuItem = {
+      key,
+      verb: CommonUtils.randomItem([infinitive, pastSimple, pastParticipant]),
+      variant1: '',
+      variant2: '',
+      variant3: '',
+    };
+
+    const variants = ['variant1', 'variant2', 'variant3'];
+    const correctVariant = CommonUtils.randomItem(variants);
+    const excludes = [translation];
+
+    variants.forEach((variantItem: string) => {
+      const variantName = variantItem as keyof typeof item;
+      if (variantName === correctVariant) {
+        item[variantName] = translation;
+        return;
+      }
+
+      const randomTranslation = CommonUtils.randomItem(irregularTranslations, excludes);
+      item[variantName] = randomTranslation;
+      excludes.push(randomTranslation);
+    });
+
+    return item;
   }
 
   static createRuEnSessionSet(
@@ -55,10 +86,20 @@ class IrregularUtils {
     excludes: string[] = [],
     userSet: IrregularVerbs = []
   ): IrregularRuEnSet {
-    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedRuEnSet(debt, excludes, userSet);
+    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedSet(debt, excludes, userSet);
     const result: IrregularRuEnSet = [...debtVerbs, ...sessionVerbs];
 
     return result;
+  }
+
+  static createEnRuSessionSet(
+    debt: string[] = [],
+    excludes: string[] = [],
+    userSet: IrregularVerbs = []
+  ): IrregularEnRuSet {
+    const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedSet(debt, excludes, userSet);
+
+    return [];
   }
 
   static validate(origin: string, value: string): ValidationResult {

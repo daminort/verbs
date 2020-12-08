@@ -180,3 +180,7 @@ export const irregularVerbs: IrregularVerbs = [
   verb('wring', 'wrung', 'wrung', 'крутить, выламывать'),
   verb('write', 'wrote', 'written', 'писать'),
 ];
+
+export const irregularTranslations: Array<string> = irregularVerbs.map((verb: IrregularVerb) => {
+  return verb.translation;
+});
