@@ -23,3 +23,7 @@ export interface ValidationRuEn {
   status: GenericMap<Status>;
   errors: HashMap;
 }
+
+export interface ValidationEnRu {
+  status: GenericMap<Status>;
+}

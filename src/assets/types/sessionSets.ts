@@ -9,5 +9,6 @@ export type IrregularEnRuItem = {
   variant1: string;
   variant2: string;
   variant3: string;
+  origin: IrregularVerb;
 };
 export type IrregularEnRuSet = Array<IrregularEnRuItem>;

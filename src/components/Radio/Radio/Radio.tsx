@@ -1,11 +1,10 @@
 import React, { FC, useCallback, useContext } from 'react';
 import clsx from 'clsx';
 
+import { Status } from '../../../assets/types/input';
 import { Icon } from '../../Icon';
 import { RadioContext } from '../context';
 import { Wrapper } from './Radio.style';
-
-type Status = 'normal' | 'success' | 'error';
 
 interface Props {
   label: string;
