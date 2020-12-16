@@ -4,6 +4,7 @@ import { useInterval } from 'react-use';
 
 import { CommonUtils } from '../../utils/CommonUtils';
 import { sessionActions } from '../../redux/session/actions';
+import { scoreActions } from '../../redux/score/actions';
 import { selectIsSessionActive } from '../../redux/session/selectors';
 
 import { Icon } from '../../components/Icon';
@@ -25,7 +26,9 @@ const TopBar: FC = () => {
 
   useInterval(
     () => {
-      setTime(time + 1);
+      const newTime = time + 1;
+      setTime(newTime);
+      dispatch(scoreActions.timeSet(newTime));
     },
     isSessionActive ? 1000 : null
   );

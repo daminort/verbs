@@ -5,6 +5,7 @@ const initState: ScoreState = {
   total: 0,
   correct: 0,
   wrong: 0,
+  time: 0,
 };
 
 export function scoreReducer(state: ScoreState = initState, action: ScoreAction): ScoreState {
@@ -28,6 +29,12 @@ export function scoreReducer(state: ScoreState = initState, action: ScoreAction)
       return {
         ...state,
         wrong: action.payload.wrong,
+      };
+    }
+    case ScoreActionsTypes.TIME_SET: {
+      return {
+        ...state,
+        time: action.payload.time,
       };
     }
     default: {
