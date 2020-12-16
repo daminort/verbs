@@ -1,2 +1,0 @@
-(this.webpackJsonpverbs=this.webpackJsonpverbs||[]).push([[8],{115:function(e,r,s){"use strict";s.r(r),s.d(r,"PhrasalNew",(function(){return t}));var n=s(4),t=(s(0),function(){return Object(n.jsx)("div",{children:"PhrasalNew"})});r.default=t}}]);
-//# sourceMappingURL=8.ed1b5e7b.chunk.js.map
