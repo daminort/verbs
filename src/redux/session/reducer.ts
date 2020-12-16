@@ -7,6 +7,8 @@ const initState: SessionState = {
   phase: SessionPhase.waiting,
   irregularRuEnSet: [],
   irregularRuEnDebt: [],
+  irregularEnRuSet: [],
+  irregularEnRuDebt: [],
 };
 
 export function sessionReducer(state: SessionState = initState, action: SessionAction): SessionState {
@@ -23,6 +25,7 @@ export function sessionReducer(state: SessionState = initState, action: SessionA
         phase: action.payload.phase,
       };
     }
+    /* Irregular: Ru -> En */
     case SessionActionsTypes.IRREGULAR_RU_EN_SET_REFRESH: {
       return {
         ...state,
@@ -33,6 +36,19 @@ export function sessionReducer(state: SessionState = initState, action: SessionA
       return {
         ...state,
         irregularRuEnDebt: action.payload.irregularRuEnDebt,
+      };
+    }
+    /* Irregular: En -> Ru */
+    case SessionActionsTypes.IRREGULAR_EN_RU_SET_REFRESH: {
+      return {
+        ...state,
+        irregularEnRuSet: action.payload.irregularEnRuSet,
+      };
+    }
+    case SessionActionsTypes.IRREGULAR_EN_RU_DEBT_REFRESH: {
+      return {
+        ...state,
+        irregularEnRuDebt: action.payload.irregularEnRuDebt,
       };
     }
     default: {

@@ -6,15 +6,29 @@ const status = (state: RootState) => state.Session.status;
 const phase = (state: RootState) => state.Session.phase;
 const irregularRuEnSet = (state: RootState) => state.Session.irregularRuEnSet;
 const irregularRuEnDebt = (state: RootState) => state.Session.irregularRuEnDebt;
+const irregularEnRuSet = (state: RootState) => state.Session.irregularEnRuSet;
+const irregularEnRuDebt = (state: RootState) => state.Session.irregularEnRuDebt;
 
 export const selectIsSessionActive = createSelector([status], status => status === SessionStatus.active);
 
 export const selectSessionPhase = createSelector([phase], phase => phase);
 
-export const selectIrregularRuEnSet = createSelector([irregularRuEnSet], irregularRuEnSet => irregularRuEnSet);
+/* Irregular: Ru -> En */
 
-export const selectCurrentIrregularRuEn = createSelector([irregularRuEnSet], irregularRuEnSet => {
-  return irregularRuEnSet[0] || {};
+export const selectIrregularRuEnSet = createSelector([irregularRuEnSet], sessionSet => sessionSet);
+
+export const selectCurrentIrregularRuEn = createSelector([irregularRuEnSet], sessionSet => {
+  return sessionSet[0] || {};
 });
 
-export const selectIrregularRuEnDebt = createSelector([irregularRuEnDebt], irregularRuEnDebt => irregularRuEnDebt);
+export const selectIrregularRuEnDebt = createSelector([irregularRuEnDebt], debts => debts);
+
+/* Irregular: En -> Ru */
+
+export const selectIrregularEnRuSet = createSelector([irregularEnRuSet], sessionSet => sessionSet);
+
+export const selectCurrentIrregularEnRu = createSelector([irregularEnRuSet], sessionSet => {
+  return sessionSet[0] || {};
+});
+
+export const selectIrregularEnRuDebt = createSelector([irregularEnRuDebt], debts => debts);

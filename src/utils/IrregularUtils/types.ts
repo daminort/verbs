@@ -1,10 +1,10 @@
-import { IrregularRuEnSet } from '../../assets/types/sessionSets';
 import { GenericMap, HashMap } from '../../assets/types/common';
 import { Status } from '../../assets/types/input';
+import { IrregularVerbs } from '../../assets/types/verbs';
 
-export interface DividedRuEnSet {
-  debtVerbs: IrregularRuEnSet;
-  sessionVerbs: IrregularRuEnSet;
+export interface DividedSet {
+  debtVerbs: IrregularVerbs;
+  sessionVerbs: IrregularVerbs;
 }
 
 export interface ValuesRuEn {
@@ -21,4 +21,8 @@ export interface ValidationResult {
 export interface ValidationRuEn {
   status: GenericMap<Status>;
   errors: HashMap;
+}
+
+export interface ValidationEnRu {
+  status: GenericMap<Status>;
 }

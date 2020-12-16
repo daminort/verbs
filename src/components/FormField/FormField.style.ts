@@ -15,5 +15,9 @@ export const Wrapper = styled.div`
 
   .control {
     width: 60%;
+
+    &.no-label {
+      width: 100%;
+    }
   }
 `;
