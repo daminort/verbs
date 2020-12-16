@@ -31,7 +31,7 @@ function* selectModes() {
   };
 }
 
-function* saveStatistics() {
+function* saveIrregularStats() {
   const correct = yield select(selectCorrect);
   const wrong = yield select(selectWrong);
   const time = yield select(selectTime);
@@ -90,4 +90,4 @@ function* nextIrregularEnRu(isError: boolean) {
   yield put(sessionActions.irregularEnRuSetRefresh(nextSet));
 }
 
-export { selectModes, saveStatistics, nextIrregularRuEn, nextIrregularEnRu };
+export { selectModes, saveIrregularStats, nextIrregularRuEn, nextIrregularEnRu };

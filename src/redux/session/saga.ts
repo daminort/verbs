@@ -11,7 +11,7 @@ import { selectIrregularRuEnDebt, selectIrregularEnRuDebt } from './selectors';
 
 import { SessionActionsTypes } from './types';
 import { sessionActions } from './actions';
-import { selectModes, saveStatistics, nextIrregularRuEn, nextIrregularEnRu } from './helpers';
+import { selectModes, saveIrregularStats, nextIrregularRuEn, nextIrregularEnRu } from './helpers';
 
 function* start() {
   const { isIrregularRuEn, isIrregularEnRu, isPhrasalRuEn, isPhrasalEnRu } = yield call(selectModes);
@@ -82,7 +82,13 @@ function* stop() {
 
   yield put(sessionActions.statusSet(SessionStatus.inactive));
   yield put(sessionActions.phaseSet(SessionPhase.finish));
-  yield call(saveStatistics);
+
+  if (isIrregularRuEn || isIrregularEnRu) {
+    yield call(saveIrregularStats);
+  }
+  if (isPhrasalRuEn || isPhrasalEnRu) {
+    // yield call(savePhrasalStats);
+  }
 }
 
 /* Irregular: Ru -> En */
