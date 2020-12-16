@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { put, select } from 'redux-saga/effects';
+import { put, select, call } from 'redux-saga/effects';
 
+import { StatisticService } from '../../services/StatisticService';
 import { SessionPhase } from '../../assets/enums/session';
+import { selectCorrect, selectWrong, selectTime } from '../score/selectors';
 import {
   selectCurrentIrregularEnRu,
   selectCurrentIrregularRuEn,
@@ -13,6 +15,7 @@ import {
 
 import { sessionActions } from './actions';
 import { selectIsIrregularEnRu, selectIsIrregularRuEn } from '../app/selectors';
+import { Statistics } from '../../assets/types/statistics';
 
 function* selectModes() {
   const isIrregularRuEn = yield select(selectIsIrregularRuEn);
@@ -26,6 +29,21 @@ function* selectModes() {
     isPhrasalRuEn,
     isPhrasalEnRu,
   };
+}
+
+function* saveStatistics() {
+  const correct = yield select(selectCorrect);
+  const wrong = yield select(selectWrong);
+  const time = yield select(selectTime);
+
+  const statistics: Statistics = yield call(StatisticService.loadIrregularStats);
+
+  statistics.total = statistics.total + (correct + wrong);
+  statistics.correct = statistics.correct + correct;
+  statistics.wrong = statistics.wrong + wrong;
+  statistics.time = statistics.time + time;
+
+  yield call(StatisticService.saveIrregularStats, statistics);
 }
 
 function* nextIrregularRuEn(isError: boolean) {
@@ -72,4 +90,4 @@ function* nextIrregularEnRu(isError: boolean) {
   yield put(sessionActions.irregularEnRuSetRefresh(nextSet));
 }
 
-export { nextIrregularRuEn, nextIrregularEnRu, selectModes };
+export { selectModes, saveStatistics, nextIrregularRuEn, nextIrregularEnRu };
