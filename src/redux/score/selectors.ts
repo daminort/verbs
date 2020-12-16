@@ -4,6 +4,7 @@ import { RootState } from '../store';
 const total = (state: RootState) => state.Score.total;
 const correct = (state: RootState) => state.Score.correct;
 const wrong = (state: RootState) => state.Score.wrong;
+const time = (state: RootState) => state.Score.time;
 
 export const selectTotal = createSelector([total], total => total);
 
@@ -22,3 +23,5 @@ export const selectProgress = createSelector([selectTotal, selectPassed], (total
 
   return Math.round((passed * 100) / total);
 });
+
+export const selectTime = createSelector([time], time => time);

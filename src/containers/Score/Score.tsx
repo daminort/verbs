@@ -1,7 +1,15 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectTotal, selectPassed, selectCorrect, selectWrong, selectProgress } from '../../redux/score/selectors';
+import { CommonUtils } from '../../utils/CommonUtils';
+import {
+  selectTotal,
+  selectPassed,
+  selectCorrect,
+  selectWrong,
+  selectProgress,
+  selectTime,
+} from '../../redux/score/selectors';
 
 import { Wrapper } from './Score.style';
 
@@ -11,6 +19,7 @@ const Score: FC = () => {
   const correct = useSelector(selectCorrect);
   const wrong = useSelector(selectWrong);
   const progress = useSelector(selectProgress);
+  const time = useSelector(selectTime);
 
   return (
     <Wrapper>
@@ -32,6 +41,10 @@ const Score: FC = () => {
       <div className="row">
         <span className="label">Progress</span>
         <span className="value">{progress} %</span>
+      </div>
+      <div className="row">
+        <span className="label">Time</span>
+        <span className="value">{CommonUtils.formatSeconds(time)}</span>
       </div>
     </Wrapper>
   );
