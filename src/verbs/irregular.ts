@@ -1,6 +1,6 @@
 import { IrregularVerb, IrregularVerbs } from '../assets/types/verbs';
 
-const verb = (i: string, ps: string, pp: string, t: string): IrregularVerb => {
+function verb(i: string, ps: string, pp: string, t: string): IrregularVerb {
   return {
     key: i,
     infinitive: i,
@@ -8,7 +8,7 @@ const verb = (i: string, ps: string, pp: string, t: string): IrregularVerb => {
     pastParticipant: pp,
     translation: t,
   };
-};
+}
 
 export const irregularVerbs: IrregularVerbs = [
   // A

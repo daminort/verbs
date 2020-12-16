@@ -80,8 +80,8 @@ class IrregularUtils {
   }
 
   static createRuEnSessionSet(
-    debt: string[] = [],
-    excludes: string[] = [],
+    debt: Array<string> = [],
+    excludes: Array<string> = [],
     userSet: IrregularVerbs = []
   ): IrregularRuEnSet {
     const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedSet(debt, excludes, userSet);
@@ -91,8 +91,8 @@ class IrregularUtils {
   }
 
   static createEnRuSessionSet(
-    debt: string[] = [],
-    excludes: string[] = [],
+    debt: Array<string> = [],
+    excludes: Array<string> = [],
     userSet: IrregularVerbs = []
   ): IrregularEnRuSet {
     const { debtVerbs, sessionVerbs } = IrregularUtils.createDividedSet(debt, excludes, userSet);

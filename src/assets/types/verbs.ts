@@ -7,3 +7,14 @@ export interface IrregularVerb {
 }
 
 export type IrregularVerbs = Array<IrregularVerb>;
+
+export interface PhrasalVerb {
+  key: string;
+  verb: string;
+  preposition: string;
+  meaning: string;
+  translation: string;
+  examples: Array<string>;
+}
+
+export type PhrasalVerbs = Array<PhrasalVerb>;

@@ -1,6 +1,6 @@
-import { IrregularVerb } from './verbs';
+import { IrregularVerb, PhrasalVerb } from './verbs';
 
-export type IrregularRuEnItem = IrregularVerb;
+/* Irregular */
 export type IrregularRuEnSet = Array<IrregularVerb>;
 
 export type IrregularEnRuItem = {
@@ -12,3 +12,16 @@ export type IrregularEnRuItem = {
   origin: IrregularVerb;
 };
 export type IrregularEnRuSet = Array<IrregularEnRuItem>;
+
+/* Phrasal */
+export type PhrasalRuEnSet = Array<PhrasalVerb>;
+
+export type PhrasalEnRuItem = {
+  key: string;
+  verb: string;
+  variant1: string;
+  variant2: string;
+  variant3: string;
+  origin: PhrasalVerb;
+};
+export type PhrasalEnRuSet = Array<PhrasalEnRuItem>;
