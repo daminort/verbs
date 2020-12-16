@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useMount } from 'react-use';
 
-import { GenericMap, HashMap } from '../../assets/types/common';
+import { GenericMap } from '../../assets/types/common';
 import { Directions, Modes } from '../../assets/enums/app';
 import { SessionPhase } from '../../assets/enums/session';
 import { Status } from '../../assets/types/input';
@@ -12,12 +12,7 @@ import { IrregularUtils } from '../../utils/IrregularUtils';
 import { appActions } from '../../redux/app/actions';
 import { sessionActions } from '../../redux/session/actions';
 import { selectLoading } from '../../redux/app/selectors';
-import {
-  selectCurrentIrregularEnRu,
-  selectCurrentIrregularRuEn,
-  selectIsSessionActive,
-  selectSessionPhase,
-} from '../../redux/session/selectors';
+import { selectCurrentIrregularEnRu, selectIsSessionActive, selectSessionPhase } from '../../redux/session/selectors';
 
 import { Task } from '../../components/Task';
 import { FormField } from '../../components/FormField';
@@ -29,18 +24,11 @@ import { IrregularEnRu as Skeleton } from '../../components/Skeletons';
 import { IrregularEnRu as Placeholder } from '../../components/Placeholders';
 
 import { Score } from '../../containers/Score';
-import { OnEnterCallbackParams } from '../../assets/types/events';
 
 const defaultStatus: GenericMap<Status> = {
   variant1: 'normal',
   variant2: 'normal',
   variant3: 'normal',
-};
-
-const defaultErrors: HashMap = {
-  variant1: '',
-  variant2: '',
-  variant3: '',
 };
 
 const IrregularEnRu: FC = () => {
@@ -102,19 +90,34 @@ const IrregularEnRu: FC = () => {
     );
   }
 
+  const isCheckDisabled = phase === SessionPhase.validation || phase === SessionPhase.results;
+  const isNextDisabled = phase === SessionPhase.waiting || phase === SessionPhase.validation;
+
   return (
     <>
-      <RadioGroup onSelect={onSelectVariant}>
-        <FormField label="Variant #1">
-          <Radio name="variant1" label="бороться" status="error" />
+      <Task value={currentItem.verb} />
+      <RadioGroup selected={variantName} onSelect={onSelectVariant}>
+        <FormField>
+          <Radio name="variant1" label={currentItem.variant1} status={status.variant1} disabled={isCheckDisabled} />
         </FormField>
-        <FormField label="Variant #2">
-          <Radio name="variant2" label="пить" status="success" />
+        <FormField>
+          <Radio name="variant2" label={currentItem.variant2} status={status.variant2} disabled={isCheckDisabled} />
         </FormField>
-        <FormField label="Variant #3">
-          <Radio name="variant3" label="спать" />
+        <FormField>
+          <Radio name="variant3" label={currentItem.variant3} status={status.variant3} disabled={isCheckDisabled} />
         </FormField>
       </RadioGroup>
+
+      <ButtonsBlock>
+        <Button tabIndex={4} ref={checkRef} disabled={isCheckDisabled} onClick={onClickCheck}>
+          Check
+        </Button>
+        <Button tabIndex={5} ref={nextRef} disabled={isNextDisabled} onClick={onClickNext}>
+          Next
+        </Button>
+      </ButtonsBlock>
+
+      <Score />
     </>
   );
 };

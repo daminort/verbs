@@ -1,10 +1,5 @@
 import { IrregularVerbs, IrregularVerb } from '../../assets/types/verbs';
-import {
-  IrregularRuEnItem,
-  IrregularRuEnSet,
-  IrregularEnRuItem,
-  IrregularEnRuSet,
-} from '../../assets/types/sessionSets';
+import { IrregularRuEnSet, IrregularEnRuItem, IrregularEnRuSet } from '../../assets/types/sessionSets';
 import { GenericMap, HashMap } from '../../assets/types/common';
 import { Status } from '../../assets/types/input';
 
@@ -163,18 +158,20 @@ class IrregularUtils {
     const isSelectedVariant2 = variantName === 'variant2';
     const isSelectedVariant3 = variantName === 'variant3';
 
-    status.variant1 = 'normal';
-    status.variant2 = 'normal';
-    status.variant3 = 'normal';
-
     if (isOriginVariant1) {
-      status.variant1 = isSelectedVariant1 ? 'success' : 'error';
+      status.variant1 = 'success';
+      status.variant2 = isSelectedVariant2 ? 'error' : 'normal';
+      status.variant3 = isSelectedVariant3 ? 'error' : 'normal';
     }
     if (isOriginVariant2) {
-      status.variant2 = isSelectedVariant2 ? 'success' : 'error';
+      status.variant1 = isSelectedVariant1 ? 'error' : 'normal';
+      status.variant2 = 'success';
+      status.variant3 = isSelectedVariant3 ? 'error' : 'normal';
     }
     if (isOriginVariant3) {
-      status.variant3 = isSelectedVariant3 ? 'success' : 'error';
+      status.variant1 = isSelectedVariant1 ? 'error' : 'normal';
+      status.variant2 = isSelectedVariant2 ? 'error' : 'normal';
+      status.variant3 = 'success';
     }
 
     const result: ValidationEnRu = {

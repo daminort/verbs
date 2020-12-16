@@ -1,4 +1,3 @@
-import { IrregularRuEnSet } from '../../assets/types/sessionSets';
 import { GenericMap, HashMap } from '../../assets/types/common';
 import { Status } from '../../assets/types/input';
 import { IrregularVerbs } from '../../assets/types/verbs';

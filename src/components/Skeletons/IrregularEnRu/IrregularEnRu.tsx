@@ -9,15 +9,15 @@ const IrregularEnRu: FC = () => {
   return (
     <Wrapper>
       <Task disabled value="loading..." />
-      <FormField label={<BlockText className="label-full" />}>
+      <FormField>
         <BlockRadio className="radio" />
         <BlockText className="value-01" />
       </FormField>
-      <FormField label={<BlockText className="label-full" />}>
+      <FormField>
         <BlockRadio className="radio" />
         <BlockText className="value-02" />
       </FormField>
-      <FormField label={<BlockText className="label-full" />}>
+      <FormField>
         <BlockRadio className="radio" />
         <BlockText className="value-03" />
       </FormField>

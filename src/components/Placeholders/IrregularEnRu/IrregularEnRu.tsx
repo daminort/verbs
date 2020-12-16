@@ -14,14 +14,14 @@ const IrregularEnRu: FC = () => {
     <Wrapper>
       <Task disabled value="waiting for start..." />
       <RadioGroup onSelect={() => {}}>
-        <FormField label="Variant #1">
-          <Radio name="variant1" label="waiting..." />
+        <FormField>
+          <Radio name="variant1" label="variant #1" disabled />
         </FormField>
-        <FormField label="Variant #2">
-          <Radio name="variant2" label="waiting..." />
+        <FormField>
+          <Radio name="variant2" label="variant #2" disabled />
         </FormField>
-        <FormField label="Variant #3">
-          <Radio name="variant3" label="waiting..." />
+        <FormField>
+          <Radio name="variant3" label="variant #3" disabled />
         </FormField>
       </RadioGroup>
       <ButtonsBlock>

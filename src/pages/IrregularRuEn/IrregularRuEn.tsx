@@ -173,6 +173,7 @@ const IrregularRuEn: FC = () => {
           onEnter={onEnter}
         />
       </FormField>
+
       <ButtonsBlock>
         <Button tabIndex={4} ref={checkRef} disabled={isCheckDisabled} onClick={onClickCheck}>
           Check

@@ -10,22 +10,27 @@ interface Props {
   label: string;
   name: string;
   status?: Status;
+  disabled?: boolean;
 }
 
 const Radio: FC<Props> = props => {
-  const { label, name, status = 'normal' } = props;
+  const { label, name, status = 'normal', disabled = false } = props;
 
   const { selected, setSelected } = useContext(RadioContext);
 
   const onClick = useCallback(() => {
+    if (disabled) {
+      return;
+    }
     setSelected(name);
-  }, [name, setSelected]);
+  }, [name, disabled, setSelected]);
 
   const checked = selected === name;
   const showSuccess = status === 'success';
   const showError = status === 'error';
 
-  const labelClass = clsx('label', {
+  const labelClass = clsx('radio-label', {
+    disabled,
     success: showSuccess,
     error: showError,
   });
